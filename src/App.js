@@ -7,6 +7,7 @@ import {
   Route,
 
 } from "react-router-dom";
+import UserProfile from './pages/UserProfile';
 
 function App() {
   return (
@@ -14,8 +15,8 @@ function App() {
         <Navbar />
         
         <Routes>
-          
 
+          <Route path='/' element={<UserProfile />}></Route>
         </Routes>
         <Footer />
       </Router>
