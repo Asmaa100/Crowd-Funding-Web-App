@@ -3,28 +3,19 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <nav className="navbar navbar-expand navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-            Crowd-Funding-App
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="buton"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <div className="navbar-brand fs-3 mx-3" href="#">
+          Welcome
+        </div>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <Link className="nav-link active" aria-current="page" to="/">
-              Profile
-            </Link>
-          
+            <a className="nav-link fs-5 mx-3 rounded-3">
+              User Profile
+            </a>
+            <a className="nav-link fs-5 mx-3 rounded-3">
+              Projects
+            </a>
           </div>
         </div>
       </div>
