@@ -3,12 +3,11 @@ import React from "react";
 export default function Footer() {
   return (
       
-<div className="container-fluid bg-dark text-white mt-5 p-1 fixed">
-                    <div className="d-flex justify-content-between align-items-center mx-4 my-1">
+<div className="container-fluid bg-primary text-white ">
+                    <div className="d-flex flex-wrap justify-content-between align-items-center mx-4 ">
                         <div>
-                            <p>GET IN TOUCH</p>
+                            <p className="mt-2">GET IN TOUCH</p>
                             <p><i className="fa-solid fa-envelope px-2"></i>ali@gmail.com</p>
-                            <p><i className="fa-solid fa-address-card px-2"></i>454-8787-887</p>
                         </div>
                         <button className="btn text-white border border-white px-4 ms-4 h-25">CONTACT ME</button>
                         <div>

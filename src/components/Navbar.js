@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-dark">
+    <nav className="navbar navbar-expand navbar-dark bg-primary">
       <div className="container-fluid">
-        <div className="navbar-brand fs-3 mx-3" href="#">
+        <div className="navbar-brand fs-4 mx-3" href="#">
           Welcome
         </div>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
