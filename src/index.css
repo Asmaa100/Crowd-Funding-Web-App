@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.cascading-right {
+  margin-right: -50px;
+  background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);
+}
+
+@media (max-width: 991.98px) {
+  .cascading-right {
+    margin-right: 0;
+  }
+}
+
+img{
+  max-height: 75.5vh;
+}
+
+.btn-link{
+  color: black;
+}
