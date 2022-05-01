@@ -6,6 +6,7 @@ import Movies from './pages/Projects';
 import Login from './pages/Login';
 import UserProfile from './pages/UserProfile';
 import MovieItem from './components/project';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Login />}></Route>
+        <Route path='/register' element={<Register />}></Route>
         <Route path='/profile/*' element={<UserProfile />} />
         <Route path='/projects' element={<MovieItem />} />
       </Routes>
