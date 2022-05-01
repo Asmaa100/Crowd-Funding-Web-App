@@ -3,7 +3,7 @@ import React from "react";
 export default function Footer() {
   return (
       
-<div className="container-fluid bg-primary text-white ">
+<div className="container-fluid bg-primary text-white  footer bg-dark">
                     <div className="d-flex flex-wrap justify-content-between align-items-center mx-4 ">
                         <div>
                             <p className="mt-2">GET IN TOUCH</p>

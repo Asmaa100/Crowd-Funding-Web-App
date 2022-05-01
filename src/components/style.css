@@ -1,0 +1,12 @@
+
+body{
+   position: relative;
+   padding-bottom:88px;
+   min-height: 100vh;
+   /* background-color: #000; */
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

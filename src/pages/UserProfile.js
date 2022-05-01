@@ -28,15 +28,15 @@ export default function UserProfile() {
         })
         .catch((err)=>{console.error(err)})
     },[])
-    console.log(userData[0]["profile_picture"])
-    let imageName = userData[0]["profile_picture"].split("/").at(-1)
-    console.log(imageName)
-    let imagePath = "../../../../Django/Crowd-Funding-Web-App/users/static/images/"
-    console.log(imagePath+imageName)
+    // console.log(userData[0]["profile_picture"])
+    // let imageName = userData[0]["profile_picture"].split("/").at(-1)
+    // console.log(imageName)
+    // let imagePath = "../../../../Django/Crowd-Funding-Web-App/users/static/images/"
+    // console.log(imagePath+imageName)
     return (
         <>
         <div className="container g-0 row">
-            <div className="col-4 d-flex flex-column p-3 text-white bg-dark" style={{height: "600px",width:"22%"}}>   
+                        <div className="col-4 d-flex flex-column p-3 text-white bg-dark" style={{height: "600px",width:"22%"}}>   
                 <img src="../src/images/1.jpg" className="rounded-circle img-fluid px-3 mb-2" style={{height: "200px",width:"500px"}} alt="image"/>
                 <p className="text-center fs-3">Ali Tarek</p>
                 <hr/>
@@ -86,6 +86,7 @@ export default function UserProfile() {
                 </Routes>                
             </div>
         </div>
+        
             {/* <div classNameName="container-fluid overflow-hidden my-1" style={{ height: "90vh" }}>
                 <div classNameName="d-flex h-100">
                     <div classNameName="w-25 bg-dark text-light p-4 d-flex justify-content-center">
