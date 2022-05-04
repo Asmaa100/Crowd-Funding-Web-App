@@ -1,10 +1,60 @@
 import React, { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+
+import axiosInstance from '../network/axiosConfig';
 
 function Register() {
   const phoneRegExp = /^01[0125]\d{8}$/;
   const passwordRegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/;
+
+  const history = useNavigate();
+  const initialFormData = {
+    username: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    phoneNumber: '',
+    attachment: '',
+  };
+
+  const [data, setData] = useState(initialFormData);
+
+  const handleChange = e => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleImageChange = e => {
+    let newData = { ...data };
+    newData['attachment'] = e.target.files[0];
+    setData(newData);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    let formData = new FormData();
+    formData.append('username', data.username);
+    formData.append('first_name', data.firstName);
+    formData.append('last_name', data.lastName);
+    formData.append('email', data.email);
+    formData.append('password', data.password);
+    formData.append('mobile_phone', data.phoneNumber);
+    formData.append('profile_picture', data.attachment);
+
+    axiosInstance
+      .post('users/register/', formData)
+      .then(res => {
+        history('/');
+        // console.log(data);
+        // console.log(res);
+        // console.log(res.data);
+      });
+  };
+
   return (
     <Formik
       initialValues={{
@@ -40,11 +90,11 @@ function Register() {
           'Please enter a valid Egyptian phone number'
         ),
 
-        attachment: Yup.mixed().required('Please enter a profile picture'),
+        // attachment: Yup.string().required('Please enter a profile picture'),
       })}
-      onSubmit={fields => {
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
-      }}
+      // onSubmit={fields => {
+      //   alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
+      // }}
       render={(
         { errors, touched } //TODO : change render to avoid deprication warning
       ) => (
@@ -55,9 +105,26 @@ function Register() {
                 <div className='card cascading-right shadow-lg rounded'>
                   <div className='card-body p-5 text-center'>
                     <h2 className='fw-bold mb-2'>Sign Up</h2>
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                       {/* first and last name */}
                       <div className='row'>
+                        <div className='form-group mx-auto my-1 d-inline-block col'>
+                          <label htmlFor='firstName'>User Name</label>
+                          <Field
+                            name='username'
+                            type='text'
+                            className={
+                              'form-control' +
+                              (errors.username && touched.username ? ' is-invalid' : '')
+                            }
+                            onKeyUp={handleChange}
+                          />
+                          <ErrorMessage
+                            name='firstName'
+                            component='div'
+                            className='invalid-feedback'
+                          />
+                        </div>
                         <div className='form-group mx-auto my-1 d-inline-block col'>
                           <label htmlFor='firstName'>First Name</label>
                           <Field
@@ -67,6 +134,7 @@ function Register() {
                               'form-control' +
                               (errors.firstName && touched.firstName ? ' is-invalid' : '')
                             }
+                            onKeyUp={handleChange}
                           />
                           <ErrorMessage
                             name='firstName'
@@ -83,6 +151,7 @@ function Register() {
                               'form-control' +
                               (errors.lastName && touched.lastName ? ' is-invalid' : '')
                             }
+                            onKeyUp={handleChange}
                           />
                           <ErrorMessage
                             name='lastName'
@@ -103,6 +172,7 @@ function Register() {
                             className={
                               'form-control' + (errors.email && touched.email ? ' is-invalid' : '')
                             }
+                            onKeyUp={handleChange}
                           />
                           <ErrorMessage name='email' component='div' className='invalid-feedback' />
                         </div>
@@ -120,6 +190,7 @@ function Register() {
                               'form-control' +
                               (errors.password && touched.password ? ' is-invalid' : '')
                             }
+                            onKeyUp={handleChange}
                           />
                           <ErrorMessage
                             name='password'
@@ -141,6 +212,7 @@ function Register() {
                                 ? ' is-invalid'
                                 : '')
                             }
+                            onKeyUp={handleChange}
                           />
                           <ErrorMessage
                             name='confirmPassword'
@@ -162,6 +234,7 @@ function Register() {
                               'form-control' +
                               (errors.phoneNumber && touched.phoneNumber ? ' is-invalid' : '')
                             }
+                            onKeyUp={handleChange}
                           />
                           <ErrorMessage
                             name='phoneNumber'
@@ -171,7 +244,13 @@ function Register() {
                         </div>
                         <div className='form-group mx-auto my-1 d-inline-block col'>
                           <label className='form-label'>Profile Picture</label>
-                          <input type='file' className='form-control' id='inputGroupFile02' />
+                          <input
+                            accept='image/*'
+                            type='file'
+                            className='form-control'
+                            id='inputGroupFile02'
+                            onChange={handleImageChange}
+                          />
                         </div>
                       </div>
                       {/* register and reset */}

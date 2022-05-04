@@ -1,8 +1,40 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import Cookies from 'js-cookie';
+
+import axiosInstance from '../network/axiosConfig';
 
 function Login() {
+  const history = useNavigate();
+  const initialFormData = {
+    email: '',
+    password: '',
+  };
+
+  const [data, setData] = useState(initialFormData);
+
+  const handleChange = e => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    let formData = new FormData();
+    var expiry = new Date(new Date().getTime() + 60 * 60 * 1000 * 3);
+
+    formData.append('email', data.email);
+    formData.append('password', data.password);
+
+    axiosInstance.post('users/login/', formData).then(res => {
+      Cookies.set('access_token', res.data.jwt, { expires: expiry });
+      axiosInstance.defaults.headers['Authorization'] = 'JWT ' + Cookies.get('access_token');
+      history('/profile');
+    });
+  };
+
   return (
     <Formik
       initialValues={{
@@ -15,9 +47,6 @@ function Login() {
           .min(6, 'Password must be at least 6 characters')
           .required('Password is required'),
       })}
-      onSubmit={fields => {
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
-      }}
       render={({ errors, touched }) => (
         <section className='text-center text-lg-start'>
           <div className='container py-3'>
@@ -26,7 +55,7 @@ function Login() {
                 <div className='card cascading-right shadow-lg rounded'>
                   <div className='card-body p-5 text-center'>
                     <h2 className='fw-bold mb-3'>Login</h2>
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                       <div className='form-outline mb-3'>
                         <label className='form-label' htmlFor='form3Example3'>
                           Email address
@@ -38,6 +67,7 @@ function Login() {
                             'form-control w-75 mx-auto' +
                             (errors.email && touched.email ? ' is-invalid' : '')
                           }
+                          onKeyUp={handleChange}
                         />
                         <ErrorMessage name='email' component='div' className='invalid-feedback' />
                       </div>
@@ -53,6 +83,7 @@ function Login() {
                             'form-control w-75 mx-auto' +
                             (errors.password && touched.password ? ' is-invalid' : '')
                           }
+                          onKeyUp={handleChange}
                         />
                         <ErrorMessage
                           name='password'
