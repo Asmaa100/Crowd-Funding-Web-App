@@ -6,7 +6,16 @@ body{
    /* background-color: #000; */
 }
 .footer{
+    margin-top:20px;
+    border-top: 2px solid #354f6f;
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+.profile{
+    background-color: #354f6f;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: #2d3948;
+    padding:15px;
 }

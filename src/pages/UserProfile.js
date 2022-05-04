@@ -36,8 +36,8 @@ export default function UserProfile() {
     return (
         <>
         <div className="container g-0 row">
-                        <div className="col-4 d-flex flex-column p-3 text-white bg-dark" style={{height: "600px",width:"22%"}}>   
-                <img src="../src/images/1.jpg" className="rounded-circle img-fluid px-3 mb-2" style={{height: "200px",width:"500px"}} alt="image"/>
+                        <div className="col-4 d-flex flex-column p-3 text-white profile" style={{height: "100vh",width:"22%"}}>   
+                <img src={dodo} className="rounded-circle img-fluid px-3 mb-2" style={{height: "200px",width:"500px"}} alt="image"/>
                 <p className="text-center fs-3">Ali Tarek</p>
                 <hr/>
                 <ul className="nav nav-pills flex-column mb-auto">
