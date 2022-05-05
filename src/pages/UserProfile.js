@@ -78,7 +78,7 @@ export default function UserProfile() {
                     </ul>
                 </div>
             </div>
-            <div className="col-7 offset-2 bg-dark mx-6 my-5 p-3">
+            <div className="col-8" style={{width:"78%"}}>
                 <Routes>
                     <Route path='' element={<InfoComponent />}/>
                     <Route path='projects' element={<ProjectsComponent />}/>
@@ -87,31 +87,7 @@ export default function UserProfile() {
             </div>
         </div>
         
-            {/* <div classNameName="container-fluid overflow-hidden my-1" style={{ height: "90vh" }}>
-                <div classNameName="d-flex h-100">
-                    <div classNameName="w-25 bg-dark text-light p-4 d-flex justify-content-center">
-                        <div classNameName="d-flex-column align-items-center">
-                            <img src={dodo} classNameName="rounded-circle img-fluid" />
-                            <div classNameName="mt-2">
-                                <h2 classNameName=""> Asmaa </h2>
-                                <h4> Front End</h4>
-                            </div>
-                            <div classNameName="mt-3 p-2">
-                                <p>Profile</p>
-                                <p>Projects</p>
-                                <p>Donations</p>
-                            </div>
-                            <button classNameName="btn btn-primary"> Edit Profile</button>
-                        </div>
-                    </div>
-                    <div classNameName="w-75 bg-dark m-5 p-3">
-                        <Routes>
-                            <Route path='profile' element={<InfoComponent />}/>
-                        </Routes>                
-                    </div>
-                </div>
-
-            </div> */}
+       
 
         </>
     );

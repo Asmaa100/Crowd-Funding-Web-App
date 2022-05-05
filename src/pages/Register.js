@@ -46,7 +46,7 @@ function Register() {
     formData.append('profile_picture', data.attachment);
 
     axiosInstance
-      .post('users/register/', formData)
+      .post('users/register', formData)
       .then(res => {
         history('/');
         // console.log(data);
