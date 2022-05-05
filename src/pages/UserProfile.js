@@ -21,7 +21,7 @@ export default function UserProfile() {
 
     useEffect(()=>{
         axiosInstance
-        .get(`/users/`)
+        .get(`/users/user/`)
         .then((res)=>{
             console.log(res);
             setUserData(res.data)
