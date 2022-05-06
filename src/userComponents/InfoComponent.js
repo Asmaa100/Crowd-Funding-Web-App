@@ -1,9 +1,15 @@
-import React from "react";
+import React ,{ useState, useEffect }from "react";
 import dodo from "../images/1.jpg"
 import {AiTwotoneMail} from "react-icons/ai"
 import{AiFillFlag} from "react-icons/ai"
 import{BsFillCalendarDateFill} from"react-icons/bs"
-export default function InfoComponent({userData}) {
+
+
+export default function InfoComponent({userData,userImg}) {
+  
+  console.log(userImg)
+  
+  
   return (
     <>
       {/* <div className="card my-1 h-100">
@@ -33,7 +39,7 @@ export default function InfoComponent({userData}) {
           <div className="row">
 
             <div className="col-md-4">
-              <img src={dodo} className=" m-5" style={{ width: "100px", height: "100px", borderRadius: "50%", border: "3px solid #354F6F" }} />
+              <img src={userImg} className=" m-5" style={{ width: "100px", height: "100px", borderRadius: "50%", border: "3px solid #354F6F" }} />
 
             </div>
             <div className="col-md-8 d-flex align-items-center">
@@ -85,7 +91,7 @@ export default function InfoComponent({userData}) {
                   </div>
                   <div className="col-sm-5 ">
                     <div className="description-block">
-                      <p className="description-header me-5"><AiTwotoneMail className="mx-3"/> Email: </p>
+                      <p className="description-header me-5"><AiTwotoneMail className="mx-3"/> Email: {userData.email} </p>
                     </div>
 
                   </div>

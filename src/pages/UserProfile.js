@@ -13,13 +13,22 @@ export default function UserProfile() {
   const [projectDisplay, setProjectDisplay] = useState(false);
   const [donationDisplay, setDonationDisplay] = useState(false);
   const [editDisplay, setEditDisplay] = useState(false);
+  const [userImg,setUserImage] = useState("")
 
+  let imageUrl = "http://localhost:8000/static/images/"
   useEffect(() => {
     axiosInstance
       .get(`/users/user`, { withCredentials: true })
       .then(res => {
         console.log(res);
         setUserData(res.data);
+        let imgName = res.data.profile_picture.split('/').at(-1)
+        setUserImage(imageUrl+imgName)
+        //let test = userData.profile_picture.split('/',1).at(-1)
+      }).then((res)=>{
+        // console.log(res.data.profile_picture )
+        // let imgName = res.data.profile_picture.split('/').at(-1)
+        // console.log(imgName)
       })
       .catch(err => {
         console.error(err);
@@ -37,10 +46,10 @@ export default function UserProfile() {
           className='col-4 d-flex flex-column p-3 text-white profile'
           style={{ height: '100vh', width: '22%' }}>
           <img
-            src={userData.profile_picture}
+            src={userImg}
             className='rounded-circle img-fluid px-3 mb-2'
             style={{ height: '200px', width: '500px' }}
-            alt='image'
+            alt={userImg}
           />
           <p className='text-center fs-3'>{`${userData.first_name} ${userData.last_name}`}</p>
           <hr />
@@ -114,7 +123,7 @@ export default function UserProfile() {
         </div>
         <div className='col-8' style={{ width: '78%' }}>
           <Routes>
-            <Route path='' element={<InfoComponent userData = {userData}/>} />
+            <Route path='' element={<InfoComponent userData = {userData} userImg={userImg}/>} />
             <Route path='projects' element={<ProjectsComponent />} />
             <Route path='donations' element={<DonationsComponent />} />
           </Routes>
