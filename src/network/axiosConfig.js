@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
   baseURL: 'http://localhost:8000/',
   timeout: 5000,
   headers: {
-    Authorization: Cookies.get('access_token') ? 'JWT ' + Cookies.get('access_token') : null,
+    Authorization: Cookies.get('jwt') ? 'JWT ' + Cookies.get('jwt') : null,
     'Content-Type': 'multipart/form-data',
     accept: 'application/json',
   },

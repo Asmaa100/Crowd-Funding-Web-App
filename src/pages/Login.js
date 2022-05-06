@@ -23,15 +23,15 @@ function Login() {
     e.preventDefault();
 
     let formData = new FormData();
-    var expiry = new Date(new Date().getTime() + 60 * 60 * 1000 * 3);
 
     formData.append('email', data.email);
     formData.append('password', data.password);
 
     axiosInstance.post('users/login', formData).then(res => {
-      Cookies.set('access_token', res.data.jwt, { expires: expiry });
-      axiosInstance.defaults.headers['Authorization'] = 'JWT ' + Cookies.get('access_token');
+      Cookies.set('jwt', res.data.jwt, { expires: 1 });
+      axiosInstance.defaults.headers['Authorization'] = 'JWT ' + Cookies.get('jwt');
       history('/profile');
+      console.log(Cookies.get('jwt'));
     });
   };
 
