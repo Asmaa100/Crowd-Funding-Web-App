@@ -21,12 +21,14 @@ export default function UserProfile() {
 
     useEffect(()=>{
         axiosInstance
-        .get(`/users/user/`)
+        .get(`/users/`)
         .then((res)=>{
-            console.log(res);
+            // console.log(res);
             setUserData(res.data)
+
         })
         .catch((err)=>{console.error(err)})
+
     },[])
     // console.log(userData[0]["profile_picture"])
     // let imageName = userData[0]["profile_picture"].split("/").at(-1)
@@ -38,7 +40,7 @@ export default function UserProfile() {
         <div className="container g-0 row">
                         <div className="col-4 d-flex flex-column p-3 text-white profile" style={{height: "100vh",width:"22%"}}>   
                 <img src={dodo} className="rounded-circle img-fluid px-3 mb-2" style={{height: "200px",width:"500px"}} alt="image"/>
-                <p className="text-center fs-3">Ali Tarek</p>
+                <p className="text-center fs-3">hhhh</p>
                 <hr/>
                 <ul className="nav nav-pills flex-column mb-auto">
                 <li className="nav-item w-100 mb-2">
@@ -78,13 +80,22 @@ export default function UserProfile() {
                     </ul>
                 </div>
             </div>
+            
             <div className="col-8" style={{width:"78%"}}>
+            
                 <Routes>
-                    <Route path='' element={<InfoComponent />}/>
+                    <Route path='' element={<InfoComponent data={userData}/>}/>
                     <Route path='projects' element={<ProjectsComponent />}/>
                     <Route path='donations' element={<DonationsComponent />}/>
                 </Routes>                
             </div>
+            {/* <div key={userData.id}>
+             <InfoComponent data={userData} />
+            </div> */}
+          
+           
+
+            
         </div>
         
        
