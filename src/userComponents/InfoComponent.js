@@ -68,7 +68,7 @@ export default function InfoComponent({userData,userImg}) {
 
                   </div>
                   <div className="col-sm-3 mt-3">
-                    <button className="btn btn-danger" onClick={(e)=>userDelete(e)}>Delete Profile</button>
+                    <button className="btn btn-danger"data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Delete Profile</button>
 
                   </div>
                   <div className="col-sm-3 mt-3 ">
@@ -99,6 +99,25 @@ export default function InfoComponent({userData,userImg}) {
           </div>
          
         </div>
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Delete Account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      Are you sure you want to delete?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-outline-danger" onClick={(e)=>userDelete(e)}>Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
       </div>
 
 
