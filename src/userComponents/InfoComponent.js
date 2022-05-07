@@ -1,43 +1,45 @@
-import React, {useState, useEffect} from "react";
-import axiosInstance from "../network/axiosConfig";
+import React ,{ useState, useEffect }from "react";
 import dodo from "../images/1.jpg"
 import {AiTwotoneMail} from "react-icons/ai"
 import{AiFillFlag} from "react-icons/ai"
 import{BsFillCalendarDateFill} from"react-icons/bs"
-export default function InfoComponent() {
-  // console.log(props)
-  //  const user= props.data;
-   const [userData, setUserData] = useState({})
 
-   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axiosInstance.get(
-          `/users/`
-        );
-        console.log(response)       
-         setUserData(response.data);
-        // setError(null);
-      } catch (err) {
-        // setError(err.message);
-        setUserData(null);
-      } 
-    };
-    getData();
-  }, []);
+
+export default function InfoComponent({userData,userImg}) {
+  
+  console.log(userImg)
+  
+  
   return (
     <>
-   
+      {/* <div className="card my-1 h-100">
+        <div className="card-header">User Data</div>
+        <div className="card-body ">
+          <div className="card-text">
+            <p>First Name :</p>
+            <p>Last Name :</p>
+            <p>Email:</p>
+            <p>Mobile:</p>
+            <p>Country:</p>
+            <p>Birth Date :</p>
+            <p>Facebook Profile: </p>
+          </div>
+        </div>
+        <div className="card-footer text-muted">2 days ago</div>
+      </div> */}
+
+
+
       <div className="col-md-12 offset-md-1 mt-5 shadow">
         <div className="card card-view">
           <div className="card-header text-white " style={{ backgroundColor: "#354f6f" }}>
-            <h1 className="text-center py-4 fw-bold"> <i className=" fa-solid fa-person-running nav-icon"></i>{userData.email}<i className="fa-solid fa-person-running nav-icon"></i> </h1>
+            <h1 className="text-center py-4 fw-bold"> <i className=" fa-solid fa-person-running nav-icon"></i>  {`${userData.first_name} ${userData.last_name}`}  <i className="fa-solid fa-person-running nav-icon"></i> </h1>
 
           </div>
           <div className="row">
 
             <div className="col-md-4">
-              <img src={dodo} className=" m-5" style={{ width: "100px", height: "100px", borderRadius: "50%", border: "3px solid #354F6F" }} />
+              <img src={userImg} className=" m-5" style={{ width: "100px", height: "100px", borderRadius: "50%", border: "3px solid #354F6F" }} />
 
             </div>
             <div className="col-md-8 d-flex align-items-center">
@@ -47,7 +49,7 @@ export default function InfoComponent() {
                 <div className="col-sm-4 border-right ">
                     <div className="description-block">
                       <h5 className="description-header"><i className="fa-solid fa-mobile-screen"></i> Mobile:</h5>
-                      <p className="description-text mt-3">dfffffffff</p>
+                      <p className="description-text mt-3">{userData.mobile_phone}</p>
                     </div>
 
                   </div>
@@ -56,14 +58,14 @@ export default function InfoComponent() {
                   <div className="col-sm-4 ">
                     <div className="description-block">
                       <h5 className="description-header"> <AiFillFlag className="mx-1"/>Country </h5>
-                      <p className="description-text mt-3">ghjkl</p>
+                      <p className="description-text mt-3">{userData.country}</p>
                     </div>
 
                   </div>
                   <div className="col-sm-4 ">
                     <div className="description-block">
                       <h5 className="description-header me-5"><BsFillCalendarDateFill className="me-2"/>Birth Date </h5>
-                      <p className="description-text mt-3">ghjkl</p>
+                      <p className="description-text mt-3">{userData.birthday}</p>
                     </div>
 
                   </div>
@@ -89,7 +91,7 @@ export default function InfoComponent() {
                   </div>
                   <div className="col-sm-5 ">
                     <div className="description-block">
-                      <p className="description-header me-5"><AiTwotoneMail className="mx-3"/> Email: </p>
+                      <p className="description-header me-5"><AiTwotoneMail className="mx-3"/> Email: {userData.email} </p>
                     </div>
 
                   </div>
