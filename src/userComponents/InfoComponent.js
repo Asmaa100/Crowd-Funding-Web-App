@@ -1,33 +1,31 @@
 import React ,{ useState, useEffect }from "react";
+import axiosInstance from '../network/axiosConfig';
 import dodo from "../images/1.jpg"
 import {AiTwotoneMail} from "react-icons/ai"
 import{AiFillFlag} from "react-icons/ai"
 import{BsFillCalendarDateFill} from"react-icons/bs"
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 
 export default function InfoComponent({userData,userImg}) {
-  
-  console.log(userImg)
-  
+  const navigate = useNavigate();
+
+  const userDelete = (e) => {
+    e.preventDefault();
+    axiosInstance
+      .delete('users/delete',{ withCredentials: true })
+      .then(res => {
+        Cookies.remove("jwt")
+        navigate('/');
+
+    
+      });
+  };
   
   return (
     <>
-      {/* <div className="card my-1 h-100">
-        <div className="card-header">User Data</div>
-        <div className="card-body ">
-          <div className="card-text">
-            <p>First Name :</p>
-            <p>Last Name :</p>
-            <p>Email:</p>
-            <p>Mobile:</p>
-            <p>Country:</p>
-            <p>Birth Date :</p>
-            <p>Facebook Profile: </p>
-          </div>
-        </div>
-        <div className="card-footer text-muted">2 days ago</div>
-      </div> */}
-
+     
 
 
       <div className="col-md-12 offset-md-1 mt-5 shadow">
@@ -70,7 +68,7 @@ export default function InfoComponent({userData,userImg}) {
 
                   </div>
                   <div className="col-sm-3 mt-3">
-                    <button className="btn btn-danger">Delete Profile</button>
+                    <button className="btn btn-danger" onClick={(e)=>userDelete(e)}>Delete Profile</button>
 
                   </div>
                   <div className="col-sm-3 mt-3 ">
