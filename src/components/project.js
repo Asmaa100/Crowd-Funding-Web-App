@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css"
 import dodo from "../images/1.jpg"
-
+import "./style.css"
 export default function Project( ) {
   // console.log(props)
   // const project= props.data;

@@ -1,0 +1,16 @@
+
+.project{
+    transition: 1s;
+}
+.project:hover{
+   transform: scale(1.1);
+  background-color: #354f6f;
+  color: #fff;
+}
+.project:hover .btn-outline-primary{
+    background-color: #fff;
+    color: #354f6f;
+}
+/* .btn-outline-primary{
+    background-color: #354f6f !important
+} */
