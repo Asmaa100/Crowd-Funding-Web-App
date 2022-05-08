@@ -3,7 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 
 import axiosInstance from '../network/axiosConfig';
 import InfoComponent from '../userComponents/InfoComponent';
-import ProjectsComponent from '../userComponents/projectsComponent';
+import Projects from '../pages/UserProjects';
 import DonationsComponent from '../userComponents/donationsComponent';
 
 export default function UserProfile() {
@@ -67,7 +67,7 @@ export default function UserProfile() {
       <div className='col-8' style={{ width: '78%' }}>
         <Routes>
           <Route path='' element={<InfoComponent userData={userData} userImg={userImg} />} />
-          <Route path='projects' element={<ProjectsComponent />} />
+          <Route path='projects' element={<Projects />} />
           <Route path='donations' element={<DonationsComponent />} />
         </Routes>
       </div>
