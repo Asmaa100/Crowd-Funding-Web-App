@@ -20,6 +20,7 @@ export default function UserProfile() {
       .get(`/users/user`, { withCredentials: true })
       .then(res => {
         setUserData(res.data);
+        console.log(res.data);
         let imgName = res.data.profile_picture.split('/').at(-1);
         setUserImage(imageUrl + imgName);
       })

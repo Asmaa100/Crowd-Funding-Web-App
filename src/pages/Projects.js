@@ -1,24 +1,28 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import ProductCard from "../components/project";
-import axiosInstance from "../network/axiosConfig";
+import React from 'react';
+import { useEffect, useState } from 'react';
+
+import ProjectCard from '../components/ProjectCard';
+import axiosInstance from '../network/axiosConfig';
 
 export default function Projects() {
-  const [movies, setMovies] = useState([]);
+  const [projects, setProjects] = useState([]);
+
   useEffect(() => {
     axiosInstance
-      .get("/movie/popular")
-      .then((res) => setMovies(res.data.results))
-      .catch((err) => console.log(err));
+      .get('/projects/', { withCredentials: true })
+      .then(res => {
+        setProjects(res.data);
+      })
+      .catch(err => console.log(err));
   }, []);
 
   return (
     <div>
-      <div className="row row-cols-md-5 g-4">
-        {movies.map((movie) => {
+      <div className='row row-cols-md-5 g-4'>
+        {projects.map(project => {
           return (
-            <div className="col mb-4" key={movie.id}>
-              <ProductCard data={movie} />
+            <div className='col mb-4' key={project.id}>
+              <ProjectCard project={project} />
             </div>
           );
         })}
@@ -26,4 +30,3 @@ export default function Projects() {
     </div>
   );
 }
-
