@@ -27,7 +27,7 @@ export default function UserProfile() {
       .catch(err => {
         console.error(err);
       });
-  }, [imageUrl]);
+  }, []);
 
   return (
     <div className='container g-0 row'>

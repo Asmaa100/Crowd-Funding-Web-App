@@ -18,7 +18,7 @@ export default function Projects() {
 
   return (
     <div>
-      <div className='row row-cols-md-5 g-4'>
+      <div className='row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 m-auto'>
         {projects.map(project => {
           return (
             <div className='col mb-4' key={project.id}>
