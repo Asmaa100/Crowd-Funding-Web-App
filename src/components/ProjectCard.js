@@ -15,20 +15,18 @@ export default function ProjectCard({ project }) {
   ).toLocaleDateString();
 
   return (
-    
-          <div className='card bg-dark text-light'>
-            <img src={`${imageUrl}/` + project.thumbnail.split('/').at(-1)} className='' />
+    <div className='card bg-dark text-light'>
+      <img src={`${imageUrl}/` + project.thumbnail.split('/').at(-1)} className='' />
 
-            <div className='card-body'>
-              <h5 className='card-title'>Title: {project.title}</h5>
-              <p className='card-text'>Details: {project.details}</p>
-              <p className='card-text'>Project end time: {date}</p>
-              <p className='card-text'>Total Target: {project.total_target}$</p>
-              <Link to={`/projects/${project.id}`} className='btn btn-primary'>
-                Go somewhere
-              </Link>
-            </div>
-          </div>
-       
+      <div className='card-body'>
+        <h5 className='card-title'>Title: {project.title}</h5>
+        <p className='card-text'>Details: {project.details}</p>
+        <p className='card-text'>Project end time: {date}</p>
+        <p className='card-text'>Total Target: {Number(project.total_target).toFixed(2)}$</p>
+        <Link to={`/projects/${project.id}`} className='btn btn-primary'>
+          Go somewhere
+        </Link>
+      </div>
+    </div>
   );
 }
