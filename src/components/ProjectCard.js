@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './style.css';
-import dodo from '../images/1.jpg';
 
 export default function ProjectCard({ project }) {
   let imageUrl = 'http://localhost:8000/static/projects/images';
@@ -16,9 +15,7 @@ export default function ProjectCard({ project }) {
   ).toLocaleDateString();
 
   return (
-    <div className='container '>
-      <div className='row mt-3'>
-        <div className='col mb-2'>
+    
           <div className='card bg-dark text-light'>
             <img src={`${imageUrl}/` + project.thumbnail.split('/').at(-1)} className='' />
 
@@ -27,13 +24,11 @@ export default function ProjectCard({ project }) {
               <p className='card-text'>Details: {project.details}</p>
               <p className='card-text'>Project end time: {date}</p>
               <p className='card-text'>Total Target: {project.total_target}$</p>
-              <Link to={``} className='btn btn-primary'>
+              <Link to={`/projects/${project.id}`} className='btn btn-primary'>
                 Go somewhere
               </Link>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+       
   );
 }
