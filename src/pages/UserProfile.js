@@ -4,14 +4,11 @@ import { Routes, Route, Link } from 'react-router-dom';
 import axiosInstance from '../network/axiosConfig';
 import InfoComponent from '../userComponents/InfoComponent';
 import Projects from '../pages/UserProjects';
-import DonationsComponent from '../userComponents/donationsComponent';
+import Donations from '../userComponents/userDonations';
 
 export default function UserProfile() {
   const [userData, setUserData] = useState([]);
-  // const [infoDisplay, setInfoDisplay] = useState(true);
-  // const [projectDisplay, setProjectDisplay] = useState(false);
-  // const [donationDisplay, setDonationDisplay] = useState(false);
-  // const [editDisplay, setEditDisplay] = useState(false);
+  const [ isLoading, setIsLoading] = useState(true)
   const [userImg, setUserImage] = useState('');
 
   let imageUrl = 'http://localhost:8000/static/users/images/';
@@ -20,7 +17,7 @@ export default function UserProfile() {
       .get(`/users/user`, { withCredentials: true })
       .then(res => {
         setUserData(res.data);
-        console.log(res.data);
+        setIsLoading(false)
         let imgName = res.data.profile_picture.split('/').at(-1);
         setUserImage(imageUrl + imgName);
       })
@@ -30,6 +27,15 @@ export default function UserProfile() {
   }, []);
 
   return (
+    <>
+    {isLoading
+      ?
+      <div className="d-flex justify-content-center mt-5">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      :
     <div className='container g-0 row'>
       <div
         className='col-4 d-flex flex-column p-3 text-white profile'
@@ -69,9 +75,11 @@ export default function UserProfile() {
         <Routes>
           <Route path='' element={<InfoComponent userData={userData} userImg={userImg} />} />
           <Route path='projects' element={<Projects />} />
-          <Route path='donations' element={<DonationsComponent />} />
+          <Route path='donations' element={<Donations />} />
         </Routes>
       </div>
     </div>
+    }
+    </>
   );
 }

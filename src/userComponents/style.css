@@ -1,5 +1,5 @@
 
-.project{
+.project,.donations{
     transition: 1s;
 }
 .project:hover{
@@ -11,6 +11,9 @@
     background-color: #fff;
     color: #354f6f;
 }
-/* .btn-outline-primary{
-    background-color: #354f6f !important
-} */
+.donations{
+    background-color: #354f6f;
+}
+.donations:hover{
+    transform: scale(1.1);
+}

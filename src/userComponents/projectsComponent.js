@@ -4,10 +4,8 @@ import "./style.css"
 import { Link } from 'react-router-dom';
 
 export default function ProjectsComponent({userProject}) {
-  console.log(userProject)
   let imageUrl = 'http://localhost:8000/static/projects/images/';
   let image=imageUrl+ userProject.thumbnail.split('/').at(-1)
-  console.log(image)  
   return (
     <>
   <div className="col-md-12 offset-md-1 ">
