@@ -12,7 +12,7 @@ function TopFiveProjects() {
     const [projects, setProjects] = useState([]);
     useEffect(() => {
         axiosInstance
-            .get("projects/top-five", { crossdomain: true })
+            .get("projects/topfive", { crossdomain: true })
             .then((response) => {
                 setProjects(response.data);
                 setIsLoading(false);
