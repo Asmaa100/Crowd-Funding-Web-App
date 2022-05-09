@@ -5,6 +5,7 @@ import './style.css';
 
 export default function ProjectCard({ project }) {
   let imageUrl = 'http://localhost:8000/static/projects/images';
+  
 
   let date = new Date(
     [
