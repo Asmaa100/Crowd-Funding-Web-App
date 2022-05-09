@@ -31,3 +31,9 @@ img{
 .btn-link{
   color: black;
 }
+
+.font-macondo {
+  font-family: 'Macondo', cursive;
+  color: black;
+  text-shadow: 2px 2px white;
+}

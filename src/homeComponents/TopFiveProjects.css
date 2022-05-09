@@ -1,0 +1,10 @@
+.welcome-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-thumbnail {
+    height: 400px;
+    width: auto;
+}
