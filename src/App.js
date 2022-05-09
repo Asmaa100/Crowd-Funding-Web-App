@@ -7,17 +7,21 @@ import UserProfile from './pages/UserProfile';
 import Register from './pages/Register';
 import Projects from './pages/Projects';
 import ProjectProfile from './pages/ProjectProfile';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Login />}></Route>
+        <Route index element={<Home />} />
+        <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/profile/*' element={<UserProfile />} />
         <Route path='/projects' element={<Projects />} />
         <Route path='/projects/:id' element={<ProjectProfile />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
     </Router>
