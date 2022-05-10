@@ -15,16 +15,18 @@ export default function Projects() {
   }, []);
 
   return (
-    <div>
-        {userProjects.map((userProject) => {
+<div className="col-md-12 offset-md-1 ">
+   <div className="row mt-5 text-center ">        
+   {userProjects.map((userProject) => {
           return (
-            <div key={userProject.id}>
-             {/* <img src={imageUrl+userProject.thumbnail.split('/').at(-1)}/> */}
+
+            <div className="col-sm-4  mb-2 " key={userProject.id}>
               <ProjectsComponent userProject={userProject} />
             </div>
             
           );
         })}
+    </div>
     </div>
   );
 }
