@@ -11,6 +11,7 @@ import DataContext from './context/data';
 import { useState } from 'react';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import ComponentsList from './homeComponents/ComponentsList';
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -26,6 +27,8 @@ function App() {
           <Route path='/profile/*' element={<UserProfile />} />
           <Route path='/projects' element={<Projects />} />
           <Route path='/projects/:id' element={<ProjectProfile />} />
+          <Route path='/projects/categories/:id' element={<ComponentsList />} />
+
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
