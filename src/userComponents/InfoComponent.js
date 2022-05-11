@@ -1,5 +1,5 @@
 // import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 import { AiFillFlag } from 'react-icons/ai';
@@ -84,7 +84,9 @@ export default function InfoComponent({ userData, userImg }) {
                   </button>
                 </div>
                 <div className='col-sm-3 mt-3 '>
+                <Link to='/profile/edit'>
                   <button className='btn btn-success'>Edit Profile</button>
+                </Link>
                 </div>
               </div>
             </div>
