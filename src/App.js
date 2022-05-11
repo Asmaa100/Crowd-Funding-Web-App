@@ -12,6 +12,7 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import AddProjects from './projectComponents/AddProject';
+import ComponentsList from './homeComponents/ComponentsList';
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -28,6 +29,8 @@ function App() {
           <Route path='/projects' element={<Projects />} />
           <Route path='/projects/create' element={<AddProjects />} />
           <Route path='/projects/:id' element={<ProjectProfile />} />
+          <Route path='/projects/categories/:id' element={<ComponentsList />} />
+
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
