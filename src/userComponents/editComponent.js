@@ -70,47 +70,21 @@ function EditProfile() {
     formData.append("fb_profile", data.fb_profile);
     formData.append("birthday", data.birthday);
     formData.append("country", data.country);
-    // let formData={
-    //     "email": "eng.abdelrahman.magdi11@gmail.com",
-    //     "first_name": "Abdelrahm",
-    //     "last_name": "dsfdsfd",
-    //     "mobile_phone": "01094073222",
-    //     "password": "Abdo12342",
-    //     "username": "fdsfdsfd",
-    //     "profile_picture": "/users/static/users/images/9ac2b49f59acf1da75422812e7807f2a64f16726r1-985-554v2_hq_ThoadsN.jpg"
-    //         }
+    
     console.log("tafaa");
     console.log(Cookies.get("jwt"));
     console.log(formData, "formData");
-    //  axios.put("http://127.0.0.1:8000/users/update", formData).then(res => {
+    
     axiosInstance.put("users/update",formData,{ withCredentials: true, headers: {
       'Content-Type': 'application/json',
       'X-CSRFToken': csrftoken,
     }, }).then((res) => {
-      //console.log("222222");
-      //Cookies.set("jwt", res.data.jwt, { expires: 1 });
-      //axiosInstance.defaults.headers["Authorization"] =
-        //"JWT " + Cookies.get("jwt");
+      
       history("/profile");
       console.log(Cookies.get("jwt"));
-      //history('/profile');
-      //console.log(res, "success");
-      //Cookies.set('jwt', res.data.jwt, { expires: 1 });
-      //axiosInstance.defaults.headers['Authorization'] = 'JWT ' + Cookies.get('jwt');
-
-      //console.log(Cookies.get('jwt'));
+      
     });
-    //.catch(error=>console.log(error,"error"))
-    //     axiosInstance.put("users/update",formData)
-    //       .then((res) => {
-    //         Cookies.set('jwt', res.data.jwt, { expires: 1 });
-    //         axiosInstance.defaults.headers['Authorization'] = 'JWT ' + Cookies.get('jwt');
-    //         history('/profile');
-    //         console.log(res, "res post");
-    //         console.log(data,"success");
-    //         // console.log(res);
-    //         // console.log(res.data);
-    //       }).catch(error=>console.log(error,"error"))
+   
   };
 
   return (
