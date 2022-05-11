@@ -11,6 +11,7 @@ import DataContext from './context/data';
 import { useState } from 'react';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import AddProjects from './projectComponents/AddProject';
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -25,6 +26,7 @@ function App() {
           <Route path='/register' element={<Register />}></Route>
           <Route path='/profile/*' element={<UserProfile />} />
           <Route path='/projects' element={<Projects />} />
+          <Route path='/projects/create' element={<AddProjects />} />
           <Route path='/projects/:id' element={<ProjectProfile />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
