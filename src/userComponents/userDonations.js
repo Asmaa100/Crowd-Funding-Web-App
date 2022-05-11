@@ -16,15 +16,17 @@ export default function Donations() {
   }, []);
 
   return (
-    <div>
+    <div className="col-md-12 offset-md-1 ">
+      <div className="row mt-5 text-center ">
         {userDonations.map((userDonation) => {
           return (
-            <div key={userDonation.id}>
+            <div className="col-sm-4  mb-2 " key={userDonation.id}>
               <DonationsComponent userDonation={userDonation}  />
             </div>
             
           );
         })}
+    </div>
     </div>
   );
 }

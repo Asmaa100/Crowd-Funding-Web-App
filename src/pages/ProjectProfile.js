@@ -6,6 +6,7 @@ import '../styles/projectProfile.css';
 import DataContext from './../context/data';
 import Cookies from 'js-cookie';
 import ProjectComments from '../projectComponents/ProjectComments';
+import ProjectPictures from '../projectComponents/ProjectPictures';
 
 export default function ProjectProfile() {
   const { projectData, setProjectData } = useContext(DataContext);
@@ -441,6 +442,12 @@ export default function ProjectProfile() {
                   Report Project
                 </button>
               </div>
+            </div>
+          </div>
+          <div className='relatedProjects'>
+            <p className='text-center fs-1 fw-bold'>Project Pictures</p>
+            <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-auto'>
+              <ProjectPictures projectData={projectData.project} />
             </div>
           </div>
           <div className='relatedProjects'>

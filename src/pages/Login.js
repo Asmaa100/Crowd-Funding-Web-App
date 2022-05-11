@@ -31,7 +31,6 @@ function Login() {
       Cookies.set('jwt', res.data.jwt, { expires: 1 });
       axiosInstance.defaults.headers['Authorization'] = 'JWT ' + Cookies.get('jwt');
       history('/profile');
-      console.log(Cookies.get('jwt'));
     });
   };
 

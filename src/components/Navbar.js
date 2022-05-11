@@ -46,7 +46,7 @@ export default function Navbar() {
                 className='dropdown-menu dropdown-menu-white text-small shadow me-0'
                 aria-labelledby='dropdownUser1'>
                 <li>
-                  <Link className='dropdown-item' to='#'>
+                  <Link className='dropdown-item' to='/projects/create'>
                     New project...
                   </Link>
                 </li>
