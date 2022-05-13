@@ -28,12 +28,16 @@ function ProjectsCategories() {
           </div>
         </div>
       ) : (
-        <div>
-          <ul>
+        <div className='mx-auto'>
+          <p className='fs-2 fw-bold font-macondo'>Categories</p>
+          <ul className='list-group-flush w-25 mx-auto p-0'>
             {categories.map(category => {
               return (
-                <li>
-                  <Link to={'projects/categories/' + category.id} key={category.id}>
+                <li className='list-group-item'>
+                  <Link
+                    to={'projects/categories/' + category.id}
+                    key={category.id}
+                    className='text-decoration-none text-dark fs-4 font-macondo'>
                     {category.name}
                   </Link>
                 </li>
