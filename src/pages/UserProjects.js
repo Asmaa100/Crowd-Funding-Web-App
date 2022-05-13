@@ -20,7 +20,7 @@ export default function Projects() {
    {userProjects.map((userProject) => {
           return (
 
-            <div className="col-sm-4  mb-2 " key={userProject.id}>
+            <div className="col-sm-4 mb-4" key={userProject.id}>
               <ProjectsComponent userProject={userProject} />
             </div>
             

@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../network/axiosConfig";
 import Cookies from "js-cookie";
-import axios from "axios";
+
 
 function EditProfile() {
   const [isLoading, setIsLoading] = useState(true);
@@ -155,10 +155,10 @@ function EditProfile() {
             <section className="text-center text-lg-start">
               <div className="container py-3">
                 <div className="row g-0 align-items-center">
-                  <div className="col-lg-6 mb-4 mb-lg-0">
-                    <div className="card cascading-right shadow-lg rounded">
+                  <div className="col-lg-8 offset-2  mb-4 mb-lg-0" >
+                    <div className="card cascading-right shadow-lg" style={{borderRadius:"20px"}}>
                       <div className="card-body p-5 text-center">
-                        <h2 className="fw-bold mb-2">Edit Profile</h2>
+                        <h2 className="fw-bold mb-3" style={{color:"#354f6f",textShadow:"3px 3px 3px #e9ece"}}>Edit Profile</h2>
                         <Form onSubmit={handleSubmit}>
                           {/* first and last name */}
                           <div className="row">
@@ -408,6 +408,7 @@ function EditProfile() {
                                 value={data.birthday}
                                 onChange={handleChange}
                                 name="birthday"
+                                className="form-control"
                                 max={current}
                               />
                               </div>
@@ -426,8 +427,29 @@ function EditProfile() {
                                 className="invalid-feedback"
                               /> */}
                             </div>
-                            {/*End Birth date and Facebook */}
                             <div className="form-group mx-auto my-1 d-inline-block col">
+                              <label className="form-label" htmlFor="country">
+                                country
+                              </label>
+                              <Field
+                                name="country"
+                                type="text"
+                                className={
+                                  "form-control" +
+                                  (errors.country && touched.country
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                                onKeyUp={handleChange}
+                              />
+                              <ErrorMessage
+                                name="country"
+                                component="div"
+                                className="invalid-feedback"
+                              />
+                            </div>
+                            {/*End Birth date and Facebook */}
+                            <div className="form-outline mx-auto w-100">
                               <label
                                 className="form-label"
                                 htmlFor="fb_profile"
@@ -456,33 +478,13 @@ function EditProfile() {
                           </div>
                           <div className="row mb-1">
                             {/* {CountrySelector()} */}
-                            <div className="form-group mx-auto my-1 d-inline-block col">
-                              <label className="form-label" htmlFor="country">
-                                country
-                              </label>
-                              <Field
-                                name="country"
-                                type="text"
-                                className={
-                                  "form-control" +
-                                  (errors.country && touched.country
-                                    ? " is-invalid"
-                                    : "")
-                                }
-                                onKeyUp={handleChange}
-                              />
-                              <ErrorMessage
-                                name="country"
-                                component="div"
-                                className="invalid-feedback"
-                              />
-                            </div>
+                           
                           </div>
                           {/* register and reset */}
-                          <div className="form-group">
+                          <div className="form-group mt-3">
                             <button
                               type="button"
-                              className="btn btn-primary mx-2"
+                              className="btn btn-primary col-3 mx-2"
                               onClick={(e) => handleSubmit(e)}
                             >
                               Edit
@@ -491,7 +493,7 @@ function EditProfile() {
                             <button
                               onClick={() => setData(initialFormData)}
                               type="reset"
-                              className="btn btn-secondary mx-2"
+                              className="btn btn-secondary col-3 mx-2"
                             >
                               Reset
                             </button>

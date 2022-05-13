@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #fff;
+}
+.whistle {
+  width: 20%;
+  fill: #f95959;
+  margin: 50px 40%;
+  text-align: left;
+  transform: translate(-50%, -50%);
+  transform: rotate(0);
+  transform-origin: 80% 30%;
+  animation: wiggle 0.2s infinite;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(3deg);
+  }
+}
+.title {
+  margin-top: -90px;
+  margin-bottom: 20px;
+  color: #facf5a;
+  text-align: center;
+  font-family: 'Raleway';
+  font-size: 90px;
+  font-weight: 800;
+}
+.desc {
+  color: #455d7a;
+  text-align: center;
+  font-family: 'Raleway';
+  font-size: 30px;
+  text-transform: uppercase;
+}
+.boxButton {
+  display: block;
+  width: 150px;
+  position: relative;
+  margin: 10px auto;
+  background: #f95959;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  height: 50px;
+  text-decoration: none;
+  color: #fff;
+  line-height: 50px;
+  font-size: 18px;
+  white-space: nowrap;
+  margin-top: 25px;
+  transition: background 0.5s ease;
+  overflow: hidden;
+}
+
+.back {
+  text-align: center;
+}
+
+.boxButton:hover {
+  background: transparent;
+  border-color: #fff;
+}

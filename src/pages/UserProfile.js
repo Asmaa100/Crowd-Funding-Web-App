@@ -7,10 +7,17 @@ import Projects from '../pages/UserProjects';
 import Donations from '../userComponents/userDonations';
 import EditProfile from '../userComponents/editComponent';
 
+import "../components/style.css"
+
+
 export default function UserProfile() {
   const [userData, setUserData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [userImg, setUserImage] = useState('');
+  const [projectIsActive, setProjectIsActive] = useState(false);
+  const [donationIsActive, setDonationIsActive] = useState(false);
+  const [editIsActive, setEditIsActive] = useState(false);
+  const [profileIsActive, setProfileIsActive] = useState(true);
 
   let imageUrl = 'http://localhost:8000/static/users/images/';
   useEffect(() => {
@@ -28,6 +35,38 @@ export default function UserProfile() {
       });
   }, []);
 
+  const changeActivity = component => {
+    switch (component) {
+      case 'Profile':
+        setProfileIsActive(true);
+        setProjectIsActive(false);
+        setDonationIsActive(false);
+        setEditIsActive(false);
+        break;
+      case 'Donation':
+        setProfileIsActive(false);
+        setProjectIsActive(false);
+        setDonationIsActive(true);
+        setEditIsActive(false);
+        break;
+      case 'Edit':
+        setProfileIsActive(false);
+        setProjectIsActive(false);
+        setDonationIsActive(false);
+        setEditIsActive(true);
+        break;
+      case 'Project':
+        setProfileIsActive(false);
+        setProjectIsActive(true);
+        setDonationIsActive(false);
+        setEditIsActive(false);
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -37,10 +76,10 @@ export default function UserProfile() {
           </div>
         </div>
       ) : (
-        <div className='container g-0 row'>
+        <div className='container g-0 row h-100'>
           <div
             className='col-4 d-flex flex-column p-3 text-white profile'
-            style={{ height: '100vh', width: '22%' }}>
+            style={{ minHeight: '100vh', height: 'auto', width: '22%' }}>
             <img
               src={userImg}
               className='rounded-circle img-fluid px-3 mb-2'
@@ -51,22 +90,43 @@ export default function UserProfile() {
             <hr />
             <ul className='nav nav-pills flex-column mb-auto'>
               <li className='nav-item w-100 mb-2'>
-                <Link to='/profile' className='nav-link active' aria-current='page'>
+                <Link
+                  to='/profile'
+                  className={'nav-link text-white' + (profileIsActive ? ' active ' : ' ')}
+                  aria-current='page'
+                  onClick={() => {
+                    changeActivity('Profile');
+                  }}>
                   Profile
                 </Link>
               </li>
               <li className='nav-item w-100 mb-2'>
-                <Link to='/profile/projects' className='nav-link text-white'>
+                <Link
+                  to='/profile/projects'
+                  className={'nav-link text-white' + (projectIsActive ? ' active ' : '')}
+                  onClick={() => {
+                    changeActivity('Project');
+                  }}>
                   Projects
                 </Link>
               </li>
               <li className='nav-item w-100 mb-2'>
-                <Link to='/profile/donations' className='nav-link text-white'>
+                <Link
+                  to='/profile/donations'
+                  className={'nav-link text-white' + (donationIsActive ? ' active ' : '')}
+                  onClick={() => {
+                    changeActivity('Donation');
+                  }}>
                   Donations
                 </Link>
               </li>
               <li className='nav-item w-100 mb-2'>
-                <Link to='/profile/edit' className='nav-link text-white'>
+                <Link
+                  to='/profile/edit'
+                  className={'nav-link text-white' + (editIsActive ? ' active ' : '')}
+                  onClick={() => {
+                    changeActivity('Edit');
+                  }}>
                   Edit Profile
                 </Link>
               </li>
