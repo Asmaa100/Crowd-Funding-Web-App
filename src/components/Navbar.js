@@ -39,7 +39,7 @@ export default function Navbar() {
                 id='dropdownUser1'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'>
-                <img src={userImg} alt='' width='40' height='40' className='rounded-circle me-2' />
+                <img  alt='' width='40' height='40' className='rounded-circle me-2' />
               </Link>
 
               <ul

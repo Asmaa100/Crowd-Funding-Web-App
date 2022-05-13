@@ -12,7 +12,7 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import AddProjects from './projectComponents/AddProject';
-// import ComponentsList from './homeComponents/ComponentsList';
+ import ComponentsList from './homeComponents/ComponentsList';
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -26,7 +26,6 @@ function App() {
           <Navbar />
           <Routes>
             <Route index element={<Home />} />
-            <Route path='/login' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
             <Route path='/profile/*' element={<UserProfile />} />
             <Route path='/projects' element={<Projects />} />
