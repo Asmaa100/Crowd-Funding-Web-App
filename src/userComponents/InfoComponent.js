@@ -25,7 +25,10 @@ export default function InfoComponent({ userData, userImg }) {
         <div className='card-header text-white ' style={{ backgroundColor: '#354f6f' }}>
           <h1 className='text-center py-4 fw-bold'>
             {' '}
-            <i className=' fa-solid fa-person-running nav-icon'></i>{' '}
+            <i className=' fa-solid fa-person-running nav-icon'></i>
+            {/* <i class="fa-solid fa-user"></i> */}
+            {' '}
+
             {`${userData.first_name} ${userData.last_name}`}{' '}
             <i className='fa-solid fa-person-running nav-icon'></i>{' '}
           </h1>

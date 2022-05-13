@@ -33,7 +33,10 @@ export default function Navbar() {
       <div className='container-fluid flex-row'>
         <div className='collapse navbar-collapse col-2' id='navbarNavAltMarkup'>
           <div className='navbar-brand fs-4 ms-2 me-3' href='#'>
-            Welcome
+          <Link to='/' className='mx-2 rounded-3 navbar-brand fs-4 ms-2 me-3'>
+             Home
+            </Link>
+            
           </div>
           <div className='navbar-nav w-100'>
             <Link to='/profile' className='nav-link fs-5  mx-2 rounded-3'>
