@@ -22,3 +22,16 @@ body{
 .dropdown-toggle::after{
     color:#354f6f ;
 }
+.projectInfo:hover{
+    background-color: #f0f1f4;
+    transition: 1s;
+}
+.projectInfo:hover .details{
+    background-color: #fff;
+    color: #354f6f;
+}
+
+.projectInfo .details{
+    background-color: #fff;
+    color: #354f6f;
+}
