@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { GrLogout } from 'react-icons/gr';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import Cookies from 'js-cookie';
 
+import DataContext from '../context/data';
+
 export default function Navbar() {
+  const { setIsAuth } = useContext(DataContext);
   const navigate = useNavigate();
   const handleLogout = () => {
     Cookies.remove('jwt');
+    setIsAuth(false);
     navigate('/');
   };
   return (

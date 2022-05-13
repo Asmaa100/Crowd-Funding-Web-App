@@ -17,24 +17,39 @@ import ComponentsList from './homeComponents/ComponentsList';
 function App() {
   const [userData, setUserData] = useState({});
   const [projectData, setProjectData] = useState({});
+  const [isAuth, setIsAuth] = useState(false);
   return (
-    <DataContext.Provider value={{ userData, setUserData, projectData, setProjectData }}>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/register' element={<Register />}></Route>
-          <Route path='/profile/*' element={<UserProfile />} />
-          <Route path='/projects' element={<Projects />} />
-          <Route path='/projects/create' element={<AddProjects />} />
-          <Route path='/projects/:id' element={<ProjectProfile />} />
-          <Route path='/projects/categories/:id' element={<ComponentsList />} />
+    <DataContext.Provider
+      value={{ userData, setUserData, projectData, setProjectData, isAuth, setIsAuth }}>
+      {isAuth ? (
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path='/login' element={<Login />}></Route>
+            <Route path='/register' element={<Register />}></Route>
+            <Route path='/profile/*' element={<UserProfile />} />
+            <Route path='/projects' element={<Projects />} />
+            <Route path='/projects/create' element={<AddProjects />} />
+            <Route path='/projects/:id' element={<ProjectProfile />} />
+            <Route path='/projects/categories/:id' element={<ComponentsList />} />
 
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-        <Footer />
-      </Router>
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </Router>
+      ) : (
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path='/login' element={<Login />}></Route>
+            <Route path='/register' element={<Register />}></Route>
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </Router>
+      )}
     </DataContext.Provider>
   );
 }
