@@ -8,21 +8,26 @@ import axios from "axios";
 
 function EditProfile() {
   const [isLoading, setIsLoading] = useState(true);
+  const [userImg, setUserImage] = useState("");
+  const [userData, setUserData] = useState([]);
+  console.log(userImg, "userImg");
+  let imageUrl = "http://localhost:8000/static/users/images/";
   useEffect(() => {
-    // console.log(Cookies.get('jwt'));
-
     axiosInstance
       .get(`/users/user`, { withCredentials: true })
       .then((res) => {
-        setData(res.data);
-        setIsLoading(false);
+        setUserData(res.data);
+        let imgName = res.data.profile_picture.split("/").at(-1);
+        setUserImage(imageUrl + imgName);
+        console.log(imgName,"imgName")
         setIsLoading(false);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
-  let csrftoken = Cookies.get('csrftoken');
+  
+  let csrftoken = Cookies.get("csrftoken");
   const phoneRegExp = /^01[0125]\d{8}$/;
   const passwordRegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/;
   const history = useNavigate();
@@ -34,7 +39,7 @@ function EditProfile() {
     password: "",
     confirmPassword: "",
     mobile_phone: "",
-    profile_picture: "",
+    profile_picture: null,
     fb_profile: "",
     birthday: "",
     country: "",
@@ -49,7 +54,7 @@ function EditProfile() {
   const handleImageChange = (e) => {
     let newData = { ...data };
     newData["profile_picture"] = e.target.files[0];
-    console.log(typeof (e.target.files[0]))
+    console.log(typeof e.target.files[0]);
     setData(newData);
   };
 
@@ -64,29 +69,34 @@ function EditProfile() {
     formData.append("password", data.password);
     formData.append("confirmPassword", data.confirmPassword);
     formData.append("mobile_phone", data.mobile_phone);
-    if(typeof (data["profile_picture"]) !== "object"){
+    if(data.profile_picture){
       formData.append("profile_picture", data.profile_picture);
     }
+    else {
+      formData.append("profile_picture", userData.profile_picture);
+    }
+    
     formData.append("fb_profile", data.fb_profile);
     formData.append("birthday", data.birthday);
     formData.append("country", data.country);
-    
+
     console.log("tafaa");
     console.log(Cookies.get("jwt"));
     console.log(formData, "formData");
-    
-    axiosInstance.put("users/update",formData,{ withCredentials: true, headers: {
-      'Content-Type': 'application/json',
-      'X-CSRFToken': csrftoken,
-    }, }).then((res) => {
-      
-      history("/profile");
-      console.log(Cookies.get("jwt"));
-      
-    });
-   
-  };
 
+    axiosInstance
+      .put("users/update", formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken,
+        },
+      })
+      .then((res) => {
+        history("/profile");
+        console.log(Cookies.get("jwt"));
+      });
+  };
   return (
     <>
       {isLoading ? (
@@ -246,7 +256,7 @@ function EditProfile() {
                           {/* password and confirm password */}
                           <div className="row mb-1">
                             <div className="form-group mx-auto my-1 d-inline-block col">
-                              <label
+                              {/* <label
                                 className="form-label"
                                 htmlFor="form3Example4"
                               >
@@ -263,7 +273,29 @@ function EditProfile() {
                                     : "")
                                 }
                                 onKeyUp={handleChange}
+                              /> */}
+                              <label
+                                className="form-label"
+                                htmlFor="form3Example4"
+                                for="passowrd"
+                              >
+                                Password
+                              </label>
+                              <input
+                                className={
+                                  "form-control" +
+                                  (errors.password && touched.password
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                                type="password"
+                                name="password"
+                                onChange={handleChange}
+                                value={data.password}
                               />
+                              <span class="error" style={{ color: "red" }}>
+                                {errors.password}
+                              </span>
                               <ErrorMessage
                                 name="password"
                                 component="div"
@@ -273,6 +305,26 @@ function EditProfile() {
 
                             <div className="form-group mx-auto my-1 d-inline-block col">
                               <label
+                                className="form-label"
+                                htmlFor="confirmPassword"
+                                for="passowrd"
+                              >
+                                Confirm Password
+                              </label>
+                              <input
+                                className={
+                                  "form-control" +
+                                  (errors.confirmPassword &&
+                                  touched.confirmPassword
+                                    ? " is-invalid"
+                                    : "")
+                                }
+                                type="password"
+                                name="confirmPassword"
+                                onChange={handleChange}
+                                value={data.confirmPassword}
+                              />
+                              {/* <label
                                 className="form-label"
                                 htmlFor="confirmPassword"
                               >
@@ -290,7 +342,7 @@ function EditProfile() {
                                     : "")
                                 }
                                 onKeyUp={handleChange}
-                              />
+                              /> */}
                               <ErrorMessage
                                 name="confirmPassword"
                                 component="div"
@@ -330,11 +382,11 @@ function EditProfile() {
                                 Profile Picture
                               </label>
                               <input
+                                
                                 accept="image/*"
                                 type="file"
                                 className="form-control"
                                 id="inputGroupFile02"
-                                
                                 onChange={handleImageChange}
                               />
                             </div>
@@ -345,14 +397,20 @@ function EditProfile() {
                               <label className="form-label" htmlFor="birthday">
                                 Birthday
                               </label>
+                              <div>
                               <input
                                 type="date"
+                                className={
+                              'form-control' +
+                              (errors.birthday && touched.birthday ? ' is-invalid' : '')
+                            }
                                 placeholder="Enter birthday"
                                 value={data.birthday}
                                 onChange={handleChange}
                                 name="birthday"
                                 max={current}
                               />
+                              </div>
                               {/* <Field
                             name='birthday'
                             type='text'
@@ -362,11 +420,11 @@ function EditProfile() {
                             }
                             onKeyUp={handleChange}
                           /> */}
-                              <ErrorMessage
+                              {/* <ErrorMessage
                                 name="birthday"
                                 component="div"
                                 className="invalid-feedback"
-                              />
+                              /> */}
                             </div>
                             {/*End Birth date and Facebook */}
                             <div className="form-group mx-auto my-1 d-inline-block col">
@@ -380,18 +438,19 @@ function EditProfile() {
                                 name="fb_profile"
                                 type="text"
                                 className={
-                                  "form-control" +
-                                  (errors.fb_profile && touched.fb_profile
-                                    ? " is-invalid"
-                                    : "")
+                                  "form-control"
+                                  //  +
+                                  // (errors.fb_profile && touched.fb_profile
+                                  //   ? " is-invalid"
+                                  //   : "")
                                 }
                                 onKeyUp={handleChange}
                               />
-                              <ErrorMessage
+                              {/* <ErrorMessage
                                 name="fb_profile"
                                 component="div"
                                 className="invalid-feedback"
-                              />
+                              /> */}
                             </div>
                             {/*End Facebook Profile and country */}
                           </div>
@@ -428,7 +487,7 @@ function EditProfile() {
                             >
                               Edit
                             </button>
-                            
+
                             <button
                               onClick={() => setData(initialFormData)}
                               type="reset"

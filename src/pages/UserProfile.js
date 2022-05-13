@@ -77,7 +77,7 @@ export default function UserProfile() {
               <Route path='' element={<InfoComponent userData={userData} userImg={userImg} />} />
               <Route path='projects' element={<Projects />} />
               <Route path='donations' element={<Donations />} />
-              <Route path='edit' element={<EditProfile />} />
+              <Route path='edit' element={<EditProfile userImg={userImg} />} />
             </Routes>
           </div>
         </div>
