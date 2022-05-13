@@ -16,9 +16,10 @@ export default function ProjectCard({ project }) {
 
   return (
     <div
-      className='card bg-dark text-light '
+      className='card bg-dark text-light projectInfo '
       style={{
         height: '100%',
+        borderRadius:"10px"
       }}>
       <img
         alt=''
@@ -26,6 +27,8 @@ export default function ProjectCard({ project }) {
         style={{
           width: '100%',
           height: '220px',
+          borderTopRightRadius:"10px",
+          borderTopLeftRadius:"10px"
         }}
       />
 
@@ -33,7 +36,7 @@ export default function ProjectCard({ project }) {
         <h5 className='card-title'>Title: {project.title}</h5>
         <p className='card-text'>Project end time: {date}</p>
         <p className='card-text'>Total Target: {Number(project.total_target).toFixed(2)}$</p>
-        <Link to={`/projects/${project.id}`} className='btn btn-primary'>
+        <Link to={`/projects/${project.id}`} className='btn details'>
           See More Details
         </Link>
       </div>
