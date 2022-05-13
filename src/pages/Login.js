@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Cookies from 'js-cookie';
@@ -114,12 +114,19 @@ function Login() {
                           className='invalid-feedback'
                         />
                       </div>
+                      <div className='row'>
+                        <button type='submit' className='btn btn-dark btn-block mb-4 col-2 mx-auto'>
+                          Login
+                        </button>
+                      </div>
+                      <div className='row'>
+                        <p>Do not have an Account?</p>
+                        <button type='submit' className='btn btn-dark btn-block mb-4 col-2 mx-auto'>
+                          <Link to='/register' className='text-white text-decoration-none'>Register</Link>
+                        </button>
+                      </div>
 
-                      <button type='submit' className='btn btn-dark btn-block mb-4'>
-                        Login
-                      </button>
-
-                      <div className='text-center'>
+                      {/* <div className='text-center'>
                         <p>or sign up with:</p>
                         <button type='button' className='btn btn-link btn-floating mx-1'>
                           <i className='fab fa-facebook-f'></i>
@@ -136,7 +143,7 @@ function Login() {
                         <button type='button' className='btn btn-link btn-floating mx-1'>
                           <i className='fab fa-github'></i>
                         </button>
-                      </div>
+                      </div> */}
                     </Form>
                   </div>
                 </div>

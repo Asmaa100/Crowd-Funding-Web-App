@@ -330,11 +330,8 @@ function Register() {
                   </div>
                   {/* register and reset */}
                   <div className='form-group'>
-                    <button type='submit' className='btn btn-primary mx-2'>
-                      Register
-                    </button>
-                    <button type='reset' className='btn btn-secondary mx-2'>
-                      Reset
+                    <button type='submit' className='btn btn-dark mx-2'>
+                      Signup
                     </button>
                   </div>
                 </form>

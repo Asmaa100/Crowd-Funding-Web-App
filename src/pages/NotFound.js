@@ -24,9 +24,9 @@ export default function NotFound() {
       </svg>
 
       <h1 className='title'>403</h1>
-      <h2 className='desc'>Not this time, access forbidden!</h2>
-      <Link to='/' className='boxButton'>
-        <p className='back'>Go back</p>
+      <h2 className='desc'>Please login first</h2>
+      <Link to='/login' className='boxButton'>
+        <p className='back'>To login page</p>
       </Link>
     </>
   );

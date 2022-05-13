@@ -27,10 +27,10 @@ export default function Navbar() {
           <div className='navbar-nav w-100'>
             {isAuth ? (
               <>
-                <Link to='/profile' className='nav-link fs-5  mx-2 rounded-3'>
+                <Link to='/profile' className='nav-link fs-5  mx-2 rounded-3 font-macondo'>
                   User Profile
                 </Link>
-                <Link to='/projects' className='nav-link fs-5  mx-2 rounded-3'>
+                <Link to='/projects' className='nav-link fs-5  mx-2 rounded-3 font-macondo'>
                   Projects
                 </Link>
 
