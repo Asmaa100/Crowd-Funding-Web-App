@@ -44,13 +44,8 @@ function App() {
           <Navbar />
           <Routes>
             <Route index element={<Home />} />
+            <Route path='/login' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
-            <Route path='/profile/*' element={<UserProfile />} />
-            <Route path='/projects' element={<Projects />} />
-            <Route path='/projects/create' element={<AddProjects />} />
-            <Route path='/projects/:id' element={<ProjectProfile />} />
-            <Route path='/projects/categories/:id' element={<ProjectsList />} />
-
             <Route path='*' element={<NotFound />} />
           </Routes>
           <Footer />
