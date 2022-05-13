@@ -13,7 +13,7 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import AddProjects from './projectComponents/AddProject';
- import ComponentsList from './homeComponents/ComponentsList';
+ import ProjectsList from './homeComponents/ProjectsList';
 
 function App() {
   let jwt = Cookies.get('jwt');
@@ -33,7 +33,7 @@ function App() {
             <Route path='/projects' element={<Projects />} />
             <Route path='/projects/create' element={<AddProjects />} />
             <Route path='/projects/:id' element={<ProjectProfile />} />
-            {/* <Route path='/projects/categories/:id' element={<ComponentsList />} /> */}
+            <Route path='/projects/categories/:id' element={<ProjectsList />} />
 
             <Route path='*' element={<NotFound />} />
           </Routes>
@@ -44,8 +44,13 @@ function App() {
           <Navbar />
           <Routes>
             <Route index element={<Home />} />
-            <Route path='/login' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
+            <Route path='/profile/*' element={<UserProfile />} />
+            <Route path='/projects' element={<Projects />} />
+            <Route path='/projects/create' element={<AddProjects />} />
+            <Route path='/projects/:id' element={<ProjectProfile />} />
+            <Route path='/projects/categories/:id' element={<ProjectsList />} />
+
             <Route path='*' element={<NotFound />} />
           </Routes>
           <Footer />
