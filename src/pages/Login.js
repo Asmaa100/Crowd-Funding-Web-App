@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Cookies from 'js-cookie';
 
 import axiosInstance from '../network/axiosConfig';
+import DataContext from '../context/data';
 
 function Login() {
+  const { isAuth, setIsAuth } = useContext(DataContext);
   const history = useNavigate();
   const initialFormData = {
     email: '',
@@ -14,6 +16,7 @@ function Login() {
   };
 
   const [data, setData] = useState(initialFormData);
+  const [isValid, setIsValid] = useState(true);
 
   const handleChange = e => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -21,18 +24,39 @@ function Login() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log(data);
+    if (isValid) {
+      let formData = new FormData();
 
-    let formData = new FormData();
+      formData.append('email', data.email);
+      formData.append('password', data.password);
 
-    formData.append('email', data.email);
-    formData.append('password', data.password);
-
-    axiosInstance.post('users/login', formData).then(res => {
-      Cookies.set('jwt', res.data.jwt, { expires: 1 });
-      axiosInstance.defaults.headers['Authorization'] = 'JWT ' + Cookies.get('jwt');
-      history('/profile');
-    });
+      axiosInstance
+        .post('users/login', formData)
+        .then(res => {
+          Cookies.set('jwt', res.data.jwt, { expires: 1 });
+          axiosInstance.defaults.headers['Authorization'] = 'JWT ' + Cookies.get('jwt');
+          setIsAuth(true);
+          history('/profile');
+        })
+        .catch(err => {
+          alert(Object.values(err.response.data)[0] + '');
+        });
+    } else {
+      alert('please check your Data');
+    }
   };
+
+  useEffect(() => {
+    Object.values(data).forEach(datum => {
+      if (datum === '') {
+        setIsValid(false);
+        return;
+      } else {
+        setIsValid(true);
+      }
+    });
+  }, [data]);
 
   return (
     <Formik
