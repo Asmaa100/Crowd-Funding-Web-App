@@ -410,6 +410,12 @@ export default function ProjectProfile() {
                   <b className='text-dark'>Number of reports: </b>
                   {projectData.project.project_reports}
                 </span>
+                <span className='project_info text-white'>
+                  <b className='text-dark'>Tags: </b>
+                  {projectData.project.tags.map(tag => (
+                    <span className='btn btn-info text-dark mx-1 fw-bold'>#{tag}</span>
+                  ))}
+                </span>
               </div>
               <div className='projectDesc fs-5'>
                 <b>Project Details : </b>
