@@ -19,3 +19,6 @@ body{
     background-color: #2d3948;
     padding:15px;
 }
+.dropdown-toggle::after{
+    color:#354f6f ;
+}

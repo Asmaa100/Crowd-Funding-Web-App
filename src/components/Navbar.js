@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GrLogout } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import axiosInstance from '../network/axiosConfig';
+
 
 export default function Navbar() {
+  const [userData, setUserData] = useState([]);
+  const [userImg, setUserImage] = useState('');
+
+  let imageUrl = 'http://localhost:8000/static/users/images/';
+  useEffect(() => {
+    axiosInstance
+      .get(`/users/user`, { withCredentials: true })
+      .then(res => {
+        setUserData(res.data);
+        let imgName = res.data.profile_picture.split('/').at(-1);
+        setUserImage(imageUrl + imgName);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
   const navigate = useNavigate();
   const handleLogout = () => {
     Cookies.remove('jwt');
     navigate('/');
   };
   return (
-    <nav className='navbar navbar-expand navbar-light shadow '>
+    <nav className='navbar navbar-expand navbar-light shadow ' >
       <div className='container-fluid flex-row'>
         <div className='collapse navbar-collapse col-2' id='navbarNavAltMarkup'>
           <div className='navbar-brand fs-4 ms-2 me-3' href='#'>
@@ -33,13 +51,12 @@ export default function Navbar() {
                 data-bs-toggle='dropdown'
                 aria-expanded='false'>
                 <img
-                  src='https://github.com/mdo.png'
+                 src={userImg}
                   alt=''
                   width='40'
                   height='40'
                   className='rounded-circle me-2'
                 />
-                <strong>mdo</strong>
               </Link>
 
               <ul

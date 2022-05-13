@@ -447,7 +447,7 @@ export default function ProjectProfile() {
           <div className='relatedProjects'>
             <p className='text-center fs-1 fw-bold'>Project Pictures</p>
             <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-auto'>
-              <ProjectPictures projectData={projectData.project} />
+              {/* <ProjectPictures projectData={projectData.project} /> */}
             </div>
           </div>
           <div className='relatedProjects'>
