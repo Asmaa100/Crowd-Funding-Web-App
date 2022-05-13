@@ -1,72 +1,71 @@
-.projectCard{
-    position: relative;
-    display: block;
-    width:800px;
-    height:500px;
-    margin:80px auto;
-    overflow:hidden;
-    border-radius: 10px;
-    transition: all 0.7s;
-    box-shadow: 0px 0px 120px -25px rgb(0 0 0 / 50%);
-    background-position:right;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-clip: border-box;
-   
+.projectCard {
+  position: relative;
+  display: block;
+  width: 800px;
+  height: 500px;
+  margin: 80px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.7s;
+  box-shadow: 0px 0px 120px -25px rgb(0 0 0 / 50%);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-clip: border-box;
 }
 
 .projectCard:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
-.projectDetails{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-blend-mode: multiply;
-    z-index: 2;
-    border-radius:10px;
-    background: linear-gradient(to right, #e5e6e6 50%, transparent 100%);
-    padding-bottom:100px;
+.projectDetails {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-blend-mode: multiply;
+  z-index: 2;
+  border-radius: 10px;
+  background: linear-gradient(to right, #e5e6e6 50%, transparent 100%);
+  padding-bottom: 130px;
 }
 
-#projectImg{
-    float: left;
-    margin: 10px;
-    height:140px;
-    box-shadow: 0px 0px 10px -10px rgb(0 0 0 / 50%);
-    vertical-align: middle;
+#projectImg {
+  float: left;
+  margin: 10px;
+  height: 140px;
+  width: 120px;
+  box-shadow: 0px 0px 10px -10px rgb(0 0 0 / 50%);
+  vertical-align: middle;
 }
-#project_title{
-    color: black;
-    font-weight: 400
+#project_title {
+  color: black;
+  font-weight: 400;
 }
-.project_info{
-    display: inline-block;
-    margin-top: 15px;
-    margin-right: 10px;
-    color: #555;
-    padding: 2px;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.projectDesc{
-    width:70%;
-    padding: 25px;
-    height: 60%;
+.project_info {
+  display: inline-block;
+  margin-top: 15px;
+  margin-right: 10px;
+  color: #555;
+  padding: 2px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.projectImg{
-    background: cover;
-    width: 100%;
+.projectDesc {
+  width: 70%;
+  padding: 25px;
+  height: 60%;
 }
 
-.projectActions{
-    padding-bottom: 30px;
-    
+.projectImg {
+  background: cover;
+  width: 100%;
 }
 
-body{
-    overflow-x: hidden;
+.projectActions {
+  padding-bottom: 30px;
+}
+
+body {
+  overflow-x: hidden;
 }

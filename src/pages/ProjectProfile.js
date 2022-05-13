@@ -413,7 +413,7 @@ export default function ProjectProfile() {
                 <span className='project_info text-white'>
                   <b className='text-dark'>Tags: </b>
                   {projectData.project.tags.map(tag => (
-                    <span className='btn btn-info text-dark mx-1 fw-bold'>#{tag}</span>
+                    <span className='btn btn-info text-dark mx-1'>#{tag}</span>
                   ))}
                 </span>
               </div>
