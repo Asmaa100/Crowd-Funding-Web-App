@@ -5,6 +5,7 @@ import axiosInstance from '../network/axiosConfig';
 import InfoComponent from '../userComponents/InfoComponent';
 import Projects from '../pages/UserProjects';
 import Donations from '../userComponents/userDonations';
+import EditProfile from '../userComponents/editComponent';
 
 export default function UserProfile() {
   const [userData, setUserData] = useState([]);
@@ -77,6 +78,7 @@ export default function UserProfile() {
               <Route path='' element={<InfoComponent userData={userData} userImg={userImg} />} />
               <Route path='projects' element={<Projects />} />
               <Route path='donations' element={<Donations />} />
+              <Route path='edit' element={<EditProfile />} />
             </Routes>
           </div>
         </div>
