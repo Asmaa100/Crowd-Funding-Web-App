@@ -7,6 +7,9 @@ import Projects from '../pages/UserProjects';
 import Donations from '../userComponents/userDonations';
 import EditProfile from '../userComponents/editComponent';
 
+import "../components/style.css"
+
+
 export default function UserProfile() {
   const [userData, setUserData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
