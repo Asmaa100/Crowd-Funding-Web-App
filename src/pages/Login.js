@@ -8,7 +8,7 @@ import axiosInstance from '../network/axiosConfig';
 import DataContext from '../context/data';
 
 function Login() {
-  const { isAuth, setIsAuth } = useContext(DataContext);
+  const { setIsAuth } = useContext(DataContext);
   const history = useNavigate();
   const initialFormData = {
     email: '',

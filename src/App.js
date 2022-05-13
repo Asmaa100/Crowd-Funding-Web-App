@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -15,9 +16,10 @@ import AddProjects from './projectComponents/AddProject';
 // import ComponentsList from './homeComponents/ComponentsList';
 
 function App() {
+  let jwt = Cookies.get('jwt');
   const [userData, setUserData] = useState({});
   const [projectData, setProjectData] = useState({});
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(jwt);
   return (
     <DataContext.Provider
       value={{ userData, setUserData, projectData, setProjectData, isAuth, setIsAuth }}>
@@ -32,7 +34,7 @@ function App() {
             <Route path='/projects' element={<Projects />} />
             <Route path='/projects/create' element={<AddProjects />} />
             <Route path='/projects/:id' element={<ProjectProfile />} />
-            <Route path='/projects/categories/:id' element={<ComponentsList />} />
+            {/* <Route path='/projects/categories/:id' element={<ComponentsList />} /> */}
 
             <Route path='*' element={<NotFound />} />
           </Routes>

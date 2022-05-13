@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import axiosInstance from '../network/axiosConfig';
-import ProjectCard from '../components/ProjectCard';
+import Cookies from 'js-cookie';
+
 import '../styles/projectProfile.css';
 import DataContext from './../context/data';
-import Cookies from 'js-cookie';
+import ProjectCard from '../components/ProjectCard';
+import axiosInstance from '../network/axiosConfig';
 import ProjectComments from '../projectComponents/ProjectComments';
 import ProjectPictures from '../projectComponents/ProjectPictures';
 
@@ -444,10 +445,11 @@ export default function ProjectProfile() {
               </div>
             </div>
           </div>
+          {/* project pictures */}
           <div className='relatedProjects'>
             <p className='text-center fs-1 fw-bold'>Project Pictures</p>
             <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-auto'>
-              {/* <ProjectPictures projectData={projectData.project} /> */}
+              <ProjectPictures projectPictures={projectData.picture} />
             </div>
           </div>
           <div className='relatedProjects'>
@@ -460,7 +462,7 @@ export default function ProjectProfile() {
             <p className='text-center fs-1 fw-bold'>Related Projects</p>
             <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-auto'>
               {projectData.related.slice(0, 5).map(project => {
-                if (project.id != projectData.project.id)
+                if (project.id !== projectData.project.id)
                   return (
                     <div className='mb-4' key={project.id}>
                       <ProjectCard project={project} />
