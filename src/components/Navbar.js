@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { GrLogout } from 'react-icons/gr';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 import DataContext from '../context/data';
@@ -36,14 +36,7 @@ export default function Navbar() {
                 id='dropdownUser1'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'>
-                <img
-                  src='https://github.com/mdo.png'
-                  alt=''
-                  width='40'
-                  height='40'
-                  className='rounded-circle me-2'
-                />
-                <strong>mdo</strong>
+                <img src={userImg} alt='' width='40' height='40' className='rounded-circle me-2' />
               </Link>
 
               <ul

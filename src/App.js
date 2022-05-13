@@ -12,7 +12,7 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import AddProjects from './projectComponents/AddProject';
-import ComponentsList from './homeComponents/ComponentsList';
+// import ComponentsList from './homeComponents/ComponentsList';
 
 function App() {
   const [userData, setUserData] = useState({});
