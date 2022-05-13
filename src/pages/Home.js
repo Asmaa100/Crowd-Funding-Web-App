@@ -9,19 +9,19 @@ function Home() {
       <div>
         <SearchComponent />
       </div>
-      <div className="mx-auto my-5">
+      <div className='mx-auto my-5'>
         <TopFiveProjects />
       </div>
 
-      <div className="w-75 mx-auto my-5">
+      <div className='w-75 mx-auto my-5'>
         <FiveSelectedProjects />
       </div>
 
-      <div className="w-75 mx-auto my-5">
+      <div className='w-75 mx-auto my-5 text-center'>
         <FiveFeaturedProjects />
       </div>
 
-      <div className="w-75 mx-auto my-5 text-center">
+      <div className='w-75 mx-auto my-5 text-center'>
         <ProjectsCategories />
       </div>
     </>
