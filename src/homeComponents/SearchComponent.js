@@ -29,7 +29,7 @@ function SearchComponent() {
             });
           })
       : setProjects([]);
-  }, [projects, word]);
+  }, [word]);
 
   return (
     <>
