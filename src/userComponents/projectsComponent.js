@@ -3,8 +3,9 @@ import './style.css';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../network/axiosConfig';
 
+let projectId = 0;
 export default function ProjectsComponent({ userProject }) {
-  const [projectId,setProjectId] = useState(0)
+  // const [projectId,setProjectId] = useState(0);
   let imageUrl = 'http://localhost:8000/static/projects/images/';
   let image = imageUrl + userProject.thumbnail.split('/').at(-1);
   let date = new Date(
@@ -14,8 +15,11 @@ export default function ProjectsComponent({ userProject }) {
       userProject.end_time.substring(0, 4),
     ].join('/')
   ).toLocaleDateString();
+  function handelCancelClick(e)
+  {
+    projectId = e.target.value;
+  }
   function handleCancelProject(e){
-    setProjectId(userProject.id)
      axiosInstance.get(`/projects/${projectId}/cancel`, { withCredentials: true })
     .then((res)=>console.log(res,projectId))
     .catch(err=>console.log(err));
@@ -48,7 +52,8 @@ export default function ProjectsComponent({ userProject }) {
           </Link>
           {!userProject.is_canceled &&
           <button className="btn btn-warning text-white px-2 d-block mx-auto" data-bs-toggle='modal'
-          data-bs-target='#cancelExample' onClick={()=>{console.log(userProject.id) ;setProjectId(userProject.id)}}>Cancel Project</button>}
+          value={userProject.id}
+          data-bs-target='#cancelExample' onClick={(e)=>{handelCancelClick(e)}}>Cancel Project</button>}
         </div>
       </div>
       {/* modal cancel */}

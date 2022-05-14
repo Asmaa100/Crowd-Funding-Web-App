@@ -7,8 +7,6 @@ function SearchComponent() {
   const [word, setWord] = useState('');
 
   const [projects, setProjects] = useState([]);
-  // const search = () => {};
-
   useEffect(() => {
     word
       ? axiosInstance
