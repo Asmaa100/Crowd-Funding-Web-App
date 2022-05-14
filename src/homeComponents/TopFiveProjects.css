@@ -1,10 +1,41 @@
-.welcome-div {
+/* .welcome-div {
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+
+
+.my-img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
 }
 
-.project-thumbnail {
-    height: 400px;
-    width: auto;
+.text-red {
+    color: red;
+    font-weight: bold;
+}
+
+.my-btn {
+    color: white;
+    background-color: #3e5870;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.my-btn :hover{
+    font-weight: bold;
+}
+
+.project-card {
+    vertical-align: text-bottom;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel {
+    height: 500px;
+    /* background-color: lightgrey; */
+    border-radius: 10px;
+    /* border: 1px solid black; */
 }

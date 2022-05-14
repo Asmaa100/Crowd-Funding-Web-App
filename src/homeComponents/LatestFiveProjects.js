@@ -47,14 +47,20 @@ function LatestFiveProjects() {
                         </div>
                     </div>
                     :
-                    
-                    <Carousel responsive={responsive}>
+                    <>
+                    <div className="font-macondo">
+                        <h1>Latest-Five Project</h1>
+                    </div>
+                    <Carousel responsive={responsive} className="carousel">
                         {projects.map((project) => {
                             return (
+                                <div className="d-flex justify-content-center align-items-center project-card">
                                 <ProjectCard project={project} key={project.id} />
+                                </div>
                             );
                         })}
                     </Carousel>
+                    </>
             }
         </>
     );

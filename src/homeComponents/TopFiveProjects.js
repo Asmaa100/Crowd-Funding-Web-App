@@ -47,22 +47,20 @@ function TopFiveProjects() {
                         </div>
                     </div>
                     :
-                    <div className="row m-5">
-                        <div className="col-6 font-macondo welcome-div">
-                            <h1 className="text-center">
-                                Welcome
-                            </h1>
-                        </div>
-                        <div className="col-6">
-                            <Carousel responsive={responsive}>
-                                {projects.map((project) => {
-                                    return (
-                                        <ProjectCard project={project} key={project.id} />
-                                    );
-                                })}
-                            </Carousel>
-                        </div>
+                    <>
+                    <div className="font-macondo">
+                        <h1>Top-Five Project</h1>
                     </div>
+                    <Carousel responsive={responsive} className="carousel">
+                        {projects.map((project) => {
+                            return (
+                                <div className="d-flex justify-content-center align-items-center project-card">
+                                <ProjectCard project={project} key={project.id} />
+                                </div>
+                            );
+                        })}
+                    </Carousel>
+                    </>
             }
         </>
     );

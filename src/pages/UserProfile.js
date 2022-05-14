@@ -19,7 +19,7 @@ export default function UserProfile() {
   const [editIsActive, setEditIsActive] = useState(false);
   const [profileIsActive, setProfileIsActive] = useState(true);
 
-  let imageUrl = 'http://localhost:8000/static/users/images/';
+  const imageUrl = 'http://localhost:8000/static/users/images/';
   useEffect(() => {
     axiosInstance
       .get(`/users/user`, { withCredentials: true })
