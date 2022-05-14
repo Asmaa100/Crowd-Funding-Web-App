@@ -103,7 +103,6 @@ export default function ProjectProfile() {
   const handleReportChange = e => {
     setReport(e.target.value);
   };
-
   const handleSubmitReport = e => {
     axiosInstance
       .post(
@@ -381,6 +380,7 @@ export default function ProjectProfile() {
             </div>
           </div>
           {/* card */}
+          
           <div className='projectCard' style={{ backgroundImage: `url(${projectImg})` }}>
             <div className='projectDetails'>
               <div className='projectHeader p-2'>
@@ -413,7 +413,7 @@ export default function ProjectProfile() {
                 <span className='project_info text-white'>
                   <b className='text-dark'>Tags: </b>
                   {projectData.project.tags.map(tag => (
-                    <span className='btn btn-info text-dark mx-1'>#{tag}</span>
+                    <span className='btn btn-info text-dark mx-1' key={tag.id}>#{tag}</span>
                   ))}
                 </span>
               </div>
@@ -425,7 +425,7 @@ export default function ProjectProfile() {
               </div>
               <div className='projectActions d-flex justify-content-evenly'>
                 <button
-                  className='btn btn-warning'
+                  className='btn btn-info text-white'
                   data-bs-toggle='modal'
                   data-bs-target='#exampleModal'>
                   Rate Project
