@@ -3,6 +3,9 @@ import axiosInstance from '../network/axiosConfig';
 
 import ProjectCard from '../components/ProjectCard';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function SearchComponent() {
   const [word, setWord] = useState('');
 
@@ -13,14 +16,34 @@ function SearchComponent() {
           .get(`/projects/search/${word}`, { crossdomain: true })
           .then(response => {
             setProjects(response.data);
-            console.log(projects);
           })
-          .catch(error => console.log(error))
+          .catch(err => {
+            toast.error(Object.values(err.response.data)[0] + '', {
+              position: 'top-right',
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          })
       : setProjects([]);
   }, [projects, word]);
 
   return (
     <>
+      <ToastContainer
+        position='top-right'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className='input-group m-5 w-25'>
         <input
           type='text'

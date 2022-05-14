@@ -3,6 +3,8 @@ import axiosInstance from '../network/axiosConfig';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ProjectCard from '../components/ProjectCard';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './TopFiveProjects.css';
 
 function FiveFeaturedProjects() {
@@ -16,7 +18,17 @@ function FiveFeaturedProjects() {
         setProjects(response.data);
         setIsLoading(false);
       })
-      .catch(error => console.log(error));
+      .catch(err => {
+        toast.error(Object.values(err.response.data)[0] + '', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   }, []);
   const responsive = {
     superLargeDesktop: {
@@ -46,18 +58,29 @@ function FiveFeaturedProjects() {
         </div>
       ) : (
         <>
-          <div className="font-macondo">
-              <h1>For You</h1>
+          <ToastContainer
+            position='top-right'
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <div className='font-macondo'>
+            <h1>For You</h1>
           </div>
-        <Carousel responsive={responsive} className="carousel">
-          {projects.map(project => {
-            return (
-              <div className="d-flex justify-content-center align-items-center project-card">
-              <ProjectCard project={project} key={project.id} />
-              </div>
-            );
-          })}
-        </Carousel>
+          <Carousel responsive={responsive} className='carousel'>
+            {projects.map(project => {
+              return (
+                <div className='d-flex justify-content-center align-items-center project-card'>
+                  <ProjectCard project={project} key={project.id} />
+                </div>
+              );
+            })}
+          </Carousel>
         </>
       )}
     </>

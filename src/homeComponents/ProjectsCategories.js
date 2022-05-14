@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../network/axiosConfig';
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import ProjectCard from '../components/ProjectCard';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './TopFiveProjects.css';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +17,17 @@ function ProjectsCategories() {
         setCategories(response.data);
         setIsLoading(false);
       })
-      .catch(error => console.log(error));
+      .catch(err => {
+        toast.error(Object.values(err.response.data)[0] + '', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   }, []);
   return (
     <>
@@ -28,24 +38,39 @@ function ProjectsCategories() {
           </div>
         </div>
       ) : (
-        <div className='mx-auto'>
-          <h1 className='font-macondo'>Categories</h1>
-            <table className="table">
-            {categories.map(category => {
-              return (
-                    <tbody>
-                        <tr><td>
+        <>
+          <ToastContainer
+            position='top-right'
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <div className='mx-auto'>
+            <h1 className='font-macondo'>Categories</h1>
+            <table className='table'>
+              {categories.map(category => {
+                return (
+                  <tbody>
+                    <tr>
+                      <td>
                         <Link
-                    to={'projects/categories/' + category.id}
-                    className='text-decoration-none text-dark fs-4'>
-                    {category.name}
-                  </Link>
-                        </td></tr>
-                    </tbody>
-              );
-            })}
+                          to={'projects/categories/' + category.id}
+                          className='text-decoration-none text-dark fs-4'>
+                          {category.name}
+                        </Link>
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
             </table>
-        </div>
+          </div>
+        </>
       )}
     </>
   );

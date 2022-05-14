@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../network/axiosConfig';
 import Cookies from 'js-cookie';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProjectComments({ projectData }) {
   const [report, setReport] = useState('');
@@ -27,13 +29,30 @@ function ProjectComments({ projectData }) {
       )
       .then(res => {
         console.log(res);
+        toast.success('Comment reported', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .then(() => {
         setReport('');
         setCommentId(0);
       })
       .catch(err => {
-        console.error(err);
+        toast.error(Object.values(err.response.data)[0] + '', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
 
@@ -44,12 +63,31 @@ function ProjectComments({ projectData }) {
         setComments(res.data);
       })
       .catch(err => {
-        console.error(err);
+        toast.error(Object.values(err.response.data)[0] + '', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   }, [report, projectData]);
 
   return (
     <>
+      <ToastContainer
+        position='top-right'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div
         className='modal fade'
         id='exampleModal4'
