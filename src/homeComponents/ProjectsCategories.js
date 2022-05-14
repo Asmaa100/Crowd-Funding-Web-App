@@ -33,10 +33,9 @@ function ProjectsCategories() {
           <ul className='list-group-flush w-25 mx-auto p-0'>
             {categories.map(category => {
               return (
-                <li className='list-group-item'>
+                <li className='list-group-item' key={category.id}>
                   <Link
                     to={'projects/categories/' + category.id}
-                    key={category.id}
                     className='text-decoration-none text-dark fs-4 font-macondo'>
                     {category.name}
                   </Link>

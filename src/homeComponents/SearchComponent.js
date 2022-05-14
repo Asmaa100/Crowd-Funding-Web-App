@@ -1,22 +1,25 @@
-// import { useState, useEffect } from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axiosInstance from '../network/axiosConfig';
-import { Link } from 'react-router-dom';
+
 import ProjectCard from '../components/ProjectCard';
 
 function SearchComponent() {
   const [word, setWord] = useState('');
 
   const [projects, setProjects] = useState([]);
-  const search = () => {
-    axiosInstance
-      .get(`/projects/search/${word}`, { crossdomain: true })
-      .then(response => {
-        setProjects(response.data);
-        console.log(projects);
-      })
-      .catch(error => console.log(error));
-  };
+  // const search = () => {};
+
+  useEffect(() => {
+    word
+      ? axiosInstance
+          .get(`/projects/search/${word}`, { crossdomain: true })
+          .then(response => {
+            setProjects(response.data);
+            console.log(projects);
+          })
+          .catch(error => console.log(error))
+      : setProjects([]);
+  }, [word]);
 
   return (
     <>
@@ -29,7 +32,6 @@ function SearchComponent() {
           value={word}
           onChange={event => {
             setWord(event.target.value);
-            search();
           }}
         />
       </div>
