@@ -3,27 +3,32 @@ import FiveSelectedProjects from "../homeComponents/LatestFiveProjects";
 import FiveFeaturedProjects from "../homeComponents/FiveFeaturedProjects";
 import ProjectsCategories from "../homeComponents/ProjectsCategories";
 import SearchComponent from "../homeComponents/SearchComponent";
+import WelcomComponent from "../homeComponents/WelcomeComponent";
 function Home() {
   return (
     <>
       <div>
+        <WelcomComponent />
+      </div>
+
+      <div className='w-75 mx-auto'>
+      <div className="mb-5">
         <SearchComponent />
       </div>
-      <div className='mx-auto my-5'>
+      <div className="mb-5">
         <TopFiveProjects />
       </div>
-
-      <div className='w-75 mx-auto my-5'>
+      <div>
         <FiveSelectedProjects />
       </div>
-
-      <div className='w-75 mx-auto my-5 text-center'>
+      <div className="mb-5">
         <FiveFeaturedProjects />
       </div>
-
-      <div className='w-75 mx-auto my-5 text-center'>
+      <div className="mb-5">
         <ProjectsCategories />
       </div>
+      </div>
+      
     </>
   );
 }

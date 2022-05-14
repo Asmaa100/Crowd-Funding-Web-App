@@ -15,7 +15,7 @@ export default function ProjectsList() {
         setProjects(res.data);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [id]);
 
   return (
     <div>

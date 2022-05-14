@@ -45,11 +45,20 @@ function FiveFeaturedProjects() {
           </div>
         </div>
       ) : (
-        <Carousel responsive={responsive}>
+        <>
+          <div className="font-macondo">
+              <h1>For You</h1>
+          </div>
+        <Carousel responsive={responsive} className="carousel">
           {projects.map(project => {
-            return <ProjectCard project={project} key={project.id} />;
+            return (
+              <div className="d-flex justify-content-center align-items-center project-card">
+              <ProjectCard project={project} key={project.id} />
+              </div>
+            );
           })}
         </Carousel>
+        </>
       )}
     </>
   );

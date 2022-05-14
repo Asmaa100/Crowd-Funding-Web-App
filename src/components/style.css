@@ -3,7 +3,6 @@ body{
    position: relative;
    padding-bottom:88px;
    min-height: 100vh;
-   /* background-color: #000; */
 }
 .footer{
     margin-top:20px;
@@ -34,4 +33,29 @@ body{
 .projectInfo .details{
     background-color: #fff;
     color: #354f6f;
+}
+
+.project-thumbnail {
+    width: 300px;
+    height: auto;
+    border-radius: 15px;
+    margin: auto;
+}
+
+.my-card-img {
+    padding: 0;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.my-card { /* parent */
+    height: 400px;
+    width: 400px;
+    /* background-color: lightgrey; */
+
+    /* display: flex;
+    justify-content: flex-end;
+    flex-direction: column; */
 }

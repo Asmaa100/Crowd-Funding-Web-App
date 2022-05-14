@@ -19,7 +19,7 @@ function SearchComponent() {
           })
           .catch(error => console.log(error))
       : setProjects([]);
-  }, [word]);
+  }, [projects, word]);
 
   return (
     <>
@@ -35,16 +35,14 @@ function SearchComponent() {
           }}
         />
       </div>
-      <div>
-        <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-auto'>
-          {projects.map(project => {
-            return (
-              <div className='mb-2'>
-                <ProjectCard project={project} />
-              </div>
-            );
-          })}
-        </div>
+      <div className='row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4 m-auto z-index-1'>
+        {projects.map(project => {
+          return (
+            <div className='my-5'>
+              <ProjectCard project={project} />
+            </div>
+          );
+        })}
       </div>
     </>
   );

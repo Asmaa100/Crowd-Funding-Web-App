@@ -29,20 +29,22 @@ function ProjectsCategories() {
         </div>
       ) : (
         <div className='mx-auto'>
-          <p className='fs-2 fw-bold font-macondo'>Categories</p>
-          <ul className='list-group-flush w-25 mx-auto p-0'>
+          <h1 className='font-macondo'>Categories</h1>
+            <table className="table">
             {categories.map(category => {
               return (
-                <li className='list-group-item' key={category.id}>
-                  <Link
+                    <tbody>
+                        <tr><td>
+                        <Link
                     to={'projects/categories/' + category.id}
-                    className='text-decoration-none text-dark fs-4 font-macondo'>
+                    className='text-decoration-none text-dark fs-4'>
                     {category.name}
                   </Link>
-                </li>
+                        </td></tr>
+                    </tbody>
               );
             })}
-          </ul>
+            </table>
         </div>
       )}
     </>
