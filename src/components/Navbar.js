@@ -19,7 +19,7 @@ export default function Navbar() {
       <div className='container-fluid flex-row'>
         <div className='collapse navbar-collapse col-2' id='navbarNavAltMarkup'>
           <div className='navbar-brand fs-4 ms-2 me-3' href='#'>
-            <Link to='/' className='text-decoration-none text-dark fw-bold font-macondo'>
+            <Link to='/' className='text-decoration-none text-dark fw-bold font-arial'>
               Crowd Funding App
             </Link>
           </div>
@@ -27,10 +27,10 @@ export default function Navbar() {
           <div className='navbar-nav w-100'>
             {isAuth ? (
               <>
-                <Link to='/profile' className='nav-link fs-5  mx-2 rounded-3 font-macondo'>
+                <Link to='/profile' className='nav-link fs-5  mx-2 rounded-3 font-arial'>
                   User Profile
                 </Link>
-                <Link to='/projects' className='nav-link fs-5  mx-2 rounded-3 font-macondo'>
+                <Link to='/projects' className='nav-link fs-5  mx-2 rounded-3 font-arial'>
                   Projects
                 </Link>
 
