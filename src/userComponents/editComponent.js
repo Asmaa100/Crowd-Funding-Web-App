@@ -185,10 +185,8 @@ function EditProfile({ setEdited }) {
           render={(
             { errors, touched } //TODO : change render to avoid deprication warning
           ) => (
-            <section className="text-center text-lg-start w-100">
-              <div className="container py-1">
-                <div className="row g-0 align-items-center">
-                  <div className="col-lg-6 mb-4 mb-lg-0">
+            <section className="text-center text-lg-start w-75">
+              
                     <div className="card cascading-right shadow-lg rounded">
                       <div className="card-body p-5 text-center">
                         <h2 className="fw-bold mb-3" style={{color:"#354f6f",textShadow:"3px 3px 3px #e9ece"}}>Edit Profile</h2>
@@ -468,9 +466,8 @@ function EditProfile({ setEdited }) {
                         </Form>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  
+              
             </section>
           )}
         />
