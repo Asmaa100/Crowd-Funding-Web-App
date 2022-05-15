@@ -44,8 +44,8 @@ export default function Navbar() {
                     <img
                       src='https://gaeu.com/wp-content/uploads/2017/10/images_artiklar_Tillvaxt_liten.jpg'
                       alt=''
-                      width='80'
-                      height='80'
+                      width='70'
+                      height='70'
                       className='rounded-circle me-2'
                     />
                   </Link>
