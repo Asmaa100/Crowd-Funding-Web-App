@@ -19,6 +19,8 @@ export default function UserProfile() {
   const [donationIsActive, setDonationIsActive] = useState(false);
   const [editIsActive, setEditIsActive] = useState(false);
   const [profileIsActive, setProfileIsActive] = useState(true);
+  const [isEdited, setIsEdited] = useState(false);
+
 
   const imageUrl = 'http://localhost:8000/static/users/images/';
   useEffect(() => {
@@ -26,10 +28,10 @@ export default function UserProfile() {
       .get(`/users/user`, { withCredentials: true })
       .then(res => {
         setUserData(res.data);
-        setIsLoading(false);
         let imgName = res.data.profile_picture.split('/').at(-1);
         setUserImage(imageUrl + imgName);
         setIsLoading(false);
+        setIsEdited(false);
       })
       .catch(err => {
         toast.error(Object.values(err.response.data)[0] + '', {
@@ -42,7 +44,7 @@ export default function UserProfile() {
           progress: undefined,
         });
       });
-  }, []);
+  }, [isEdited]);
 
   const changeActivity = component => {
     switch (component) {
@@ -158,7 +160,7 @@ export default function UserProfile() {
                 <Route path='' element={<InfoComponent userData={userData} userImg={userImg} />} />
                 <Route path='projects' element={<Projects />} />
                 <Route path='donations' element={<Donations />} />
-                <Route path='edit' element={<EditProfile userImg={userImg} />} />
+                <Route path='edit' element={<EditProfile setEdited={setIsEdited} />} />
               </Routes>
             </div>
           </div>

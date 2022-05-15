@@ -4,27 +4,30 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../network/axiosConfig";
 import Cookies from "js-cookie";
-
-function EditProfile() {
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BsYoutube } from "react-icons/bs";
+function EditProfile({ setEdited }) {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    
-
     axiosInstance
       .get(`/users/user`, { withCredentials: true })
       .then((res) => {
         setData(res.data);
-        setIsLoading(false);
         setIsLoading(false);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
-  let csrftoken = Cookies.get('csrftoken');
+  let csrftoken = Cookies.get("csrftoken");
   const phoneRegExp = /^01[0125]\d{8}$/;
   const passwordRegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/;
-  const usernameRegExp = /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){1,18}[a-zA-Z0-9]$/;
+  const usernameRegExp =
+    /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){0,18}[a-zA-Z0-9]$/;
+  const fbRegExp = /^(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/
+  const countryRegExp = /^[a-zA-Z]{2,}/
+
   const history = useNavigate();
   const initialFormData = {
     username: "",
@@ -40,7 +43,6 @@ function EditProfile() {
     country: "",
   };
   const [data, setData] = useState(initialFormData);
-  console.log(data, "userData data");
   const current = new Date().toISOString().split("T")[0];
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -49,7 +51,7 @@ function EditProfile() {
   const handleImageChange = (e) => {
     let newData = { ...data };
     newData["profile_picture"] = e.target.files[0];
-    console.log(typeof (e.target.files[0]))
+    console.log(typeof e.target.files[0]);
     setData(newData);
   };
 
@@ -57,41 +59,68 @@ function EditProfile() {
     e.preventDefault();
 
     let formData = new FormData();
-    formData.append("username", data.username);
-    formData.append("first_name", data.first_name);
-    formData.append("last_name", data.last_name);
+    
+    if (data.username.length > 2 && data.username.length <= 20) {
+      formData.append("username", data.username);
+    }
+    if (data.first_name.length > 2 && data.first_name.length <= 20) {
+      formData.append("first_name", data.first_name);
+    }
+    if (data.last_name.length > 2 && data.last_name.length <= 20) {
+      formData.append("last_name", data.last_name);
+    }
     formData.append("email", data.email);
-    if (data.password!==undefined){
+    if (data.password !== undefined) {
       formData.append("password", data.password);
     }
 
     formData.append("mobile_phone", data.mobile_phone);
 
-    if (typeof(data.profile_picture)==='object'){
+    if (typeof data.profile_picture === "object") {
       formData.append("profile_picture", data.profile_picture);
     }
     formData.append("fb_profile", data.fb_profile);
     formData.append("birthday", data.birthday);
     formData.append("country", data.country);
-    console.log(formData, "formData");
-    axiosInstance.put("users/update",formData,{ withCredentials: true, headers: {
-      'Content-Type': 'application/json',
-      'X-CSRFToken': csrftoken,
-    }, }).then((res) => {
-      
-      history("/profile");
-      console.log(Cookies.get("jwt"));
-      
-    })
-    .catch(err => {
-      alert(Object.values(err.response.data)[0] + '');
-    });
-    ;
-    
+    axiosInstance
+      .put("users/update", formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken,
+        },
+      })
+      .then((res) => {
+        setEdited(true);
+        history("/profile");
+      })
+      .catch((err) => {
+        toast.error(Object.values(err.response.data)[0] + "", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       {isLoading ? (
         <div className="d-flex justify-content-center mt-5">
           <div className="spinner-border" role="status">
@@ -99,7 +128,7 @@ function EditProfile() {
           </div>
         </div>
       ) : (
-        <Formik
+        <Formik className="w-100"
           initialValues={{
             username: "",
             first_name: "",
@@ -115,14 +144,18 @@ function EditProfile() {
           }}
           validationSchema={Yup.object().shape({
             username: Yup.string()
-            .min(2, "userName is invalid")
-            .matches(usernameRegExp, "userName is invalid"),
+              .min(3, "userName is invalid")
+              .matches(usernameRegExp, "userName is invalid"),
 
-            first_name: Yup.string()
-            .min(2, "Name must be at least 2 characters"),
+            first_name: Yup.string().min(
+              3,
+              "Name must be at least 2 characters"
+            ),
 
-            last_name: Yup.string()
-            .min(2, "Name must be at least 2 characters"),
+            last_name: Yup.string().min(
+              3,
+              "Name must be at least 2 characters"
+            ),
 
             password: Yup.string()
               .min(8, "Password must be at least 8 characters")
@@ -138,22 +171,30 @@ function EditProfile() {
               phoneRegExp,
               "Please enter a valid Egyptian phone number"
             ),
-
+            country: Yup.string().min(
+              2, 
+              "Not a valid Country"
+            ),
+            fb_profile: Yup.string().matches(
+              fbRegExp, "Not valid URL"
+            ),
+            country: Yup.string().matches(
+              countryRegExp, "This not a country"
+            )
           })}
-        
           render={(
             { errors, touched } //TODO : change render to avoid deprication warning
           ) => (
-            <section className="text-center text-lg-start">
-              <div className="container py-3">
+            <section className="text-center text-lg-start w-100">
+              <div className="container py-1">
                 <div className="row g-0 align-items-center">
                   <div className="col-lg-6 mb-4 mb-lg-0">
                     <div className="card cascading-right shadow-lg rounded">
                       <div className="card-body p-5 text-center">
-                        <h2 className="fw-bold mb-2">Edit Profile</h2>
+                        <h2 className="fw-bold mb-3" style={{color:"#354f6f",textShadow:"3px 3px 3px #e9ece"}}>Edit Profile</h2>
                         <Form onSubmit={handleSubmit}>
                           {/* first and last name */}
-                          <div className="row">
+                          <div className="row mt-4">
                             <div className="form-group mx-auto my-1 d-inline-block col">
                               <label htmlFor="username">User Name</label>
                               <Field
@@ -169,7 +210,7 @@ function EditProfile() {
                                 onKeyUp={handleChange}
                               />
                               <ErrorMessage
-                                name="first_name"
+                                name="username"
                                 component="div"
                                 className="invalid-feedback"
                               />
@@ -229,10 +270,7 @@ function EditProfile() {
                                 value={data.email}
                                 readOnly
                                 type="text"
-                                className={
-                                  "form-control"
-                                 
-                                }
+                                className={"form-control"}
                                 onKeyUp={handleChange}
                               />
                               <ErrorMessage
@@ -333,7 +371,6 @@ function EditProfile() {
                                 type="file"
                                 className="form-control"
                                 id="inputGroupFile02"
-
                                 onChange={handleImageChange}
                               />
                             </div>
@@ -347,15 +384,12 @@ function EditProfile() {
                               <input
                                 type="date"
                                 value={data.birthday}
-                                className={
-                                  "form-control" 
-                                  
-                                }
+                                className={"form-control"}
                                 onChange={handleChange}
                                 name="birthday"
                                 max={current}
                               />
-                             
+
                               <ErrorMessage
                                 name="birthday"
                                 component="div"
@@ -363,7 +397,7 @@ function EditProfile() {
                               />
                             </div>
                             {/*End Birth date and Facebook */}
-                            <div className="form-group mx-auto my-1 d-inline-block col">
+                            <div className="form-outline mx-auto w-100">
                               <label
                                 className="form-label"
                                 htmlFor="fb_profile"
@@ -414,10 +448,10 @@ function EditProfile() {
                             </div>
                           </div>
                           {/* register and reset */}
-                          <div className="form-group">
+                          <div className="form-group mt-4">
                             <button
                               type="button"
-                              className="btn btn-primary mx-2"
+                              className="btn btn-primary col-4 mx-3"
                               onClick={(e) => handleSubmit(e)}
                             >
                               Edit
@@ -426,7 +460,7 @@ function EditProfile() {
                             <button
                               onClick={() => setData(initialFormData)}
                               type="reset"
-                              className="btn btn-secondary mx-2"
+                              className="btn btn-danger col-4 mx-2"
                             >
                               Reset
                             </button>
@@ -446,4 +480,3 @@ function EditProfile() {
 }
 
 export default EditProfile;
-
