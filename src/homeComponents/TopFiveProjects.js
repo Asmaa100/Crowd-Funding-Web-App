@@ -69,7 +69,7 @@ function TopFiveProjects() {
             draggable
             pauseOnHover
           />
-          <div className='font-macondo'>
+          <div className='font-arial'>
             <h1>Top-Five Project</h1>
           </div>
           <Carousel responsive={responsive} className='carousel'>

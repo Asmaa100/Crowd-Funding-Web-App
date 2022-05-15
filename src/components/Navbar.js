@@ -83,12 +83,12 @@ export default function Navbar() {
             ) : (
               <>
                 <div className='btn'>
-                  <Link to='/login' className='text-decoration-none text-dark font-macondo'>
+                  <Link to='/login' className='text-decoration-none text-dark font-arial'>
                     Login
                   </Link>
                 </div>
                 <div className='btn'>
-                  <Link to='/register' className='text-decoration-none text-dark font-macondo'>
+                  <Link to='/register' className='text-decoration-none text-dark font-arial'>
                     Register
                   </Link>
                 </div>

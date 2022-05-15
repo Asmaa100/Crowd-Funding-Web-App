@@ -9,7 +9,7 @@ function WelcomComponent() {
                 <img className="my-img" src="crowdfunding.png" alt="..." />
             </div>
             <div className="col-5 m-auto text-center">
-                <h1 className='font-macondo'>CHARITY SEES THE NEED<span className="text-red"> NOT </span>THE CAUSE.</h1>
+                <h1 className='font-arial'>CHARITY SEES THE NEED<span className="text-red"> NOT </span>THE CAUSE.</h1>
                 <Link className="my-btn btn btn-light" to="/projects">
                     <span>Get Started!</span>
                 </Link>

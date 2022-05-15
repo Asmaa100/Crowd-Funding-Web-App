@@ -51,7 +51,7 @@ function ProjectsCategories() {
             pauseOnHover
           />
           <div className='mx-auto'>
-            <h1 className='font-macondo'>Categories</h1>
+            <h1 className='font-arial'>Categories</h1>
             <table className='table'>
               {categories.map(category => {
                 return (
