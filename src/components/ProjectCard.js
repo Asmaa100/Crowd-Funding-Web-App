@@ -15,31 +15,27 @@ export default function ProjectCard({ project }) {
   ).toLocaleDateString();
 
   return (
-    <div
-      className='card bg-dark text-light projectInfo '
-      style={{
-        height: '100%',
-        borderRadius:"10px"
-      }}>
-      <img
-        alt=''
-        src={`${imageUrl}/` + project.thumbnail.split('/').at(-1)}
-        style={{
-          width: '100%',
-          height: '220px',
-          borderTopRightRadius:"10px",
-          borderTopLeftRadius:"10px"
-        }}
-      />
-
-      <div className='card-body'>
-        <h5 className='card-title'>Title: {project.title}</h5>
-        <p className='card-text'>Project end time: {date}</p>
-        <p className='card-text'>Total Target: {Number(project.total_target).toFixed(2)}$</p>
-        <Link to={`/projects/${project.id}`} className='btn details'>
-          See More Details
+    // <div key={project.id} className="mx-5 card border-0 text-center">
+    // <Link to={"/projects/" + project.id} className="text-decoration-none text-white">
+    //     <img className="card-img project-thumbnail" src={`${imageUrl}/` + project.thumbnail.split('/').at(-1)} alt={project.title} />
+    //     <div className="card-img-overlay">
+    //         <h3 className="card-title">{project.title}</h3>
+    //         <p className="card-text">{date}</p>
+    //         <p className="card-text">{Number(project.total_target)}</p>
+    //     </div>
+    // </Link>
+    // </div>
+    <div className="card my-card border-0 text-center">
+        <Link to={"/projects/" + project.id} className="text-decoration-none text-dark">
+          <div className="my-card-img card-body">
+          <img className="card-img-top card-img project-thumbnail" src={`${imageUrl}/` + project.thumbnail.split('/').at(-1)} alt={project.title} />
+          </div>
+          <div className="card-body">
+            <h4 className="card-title">{project.title}</h4>
+            <p className="card-text h5">{project.details}</p>
+            <p className="card-text text-muted">End Date: {date}</p>
+          </div>
         </Link>
-      </div>
     </div>
   );
 }

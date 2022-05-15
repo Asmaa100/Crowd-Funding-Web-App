@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 import axiosInstance from '../network/axiosConfig';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
   const phoneRegExp = /^01[0125]\d{8}$/;
@@ -145,7 +147,6 @@ function Register() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(isValid);
 
     if (isValid) {
       let formData = new FormData();
@@ -163,11 +164,26 @@ function Register() {
           history('/login');
         })
         .catch(err => {
-          alert(Object.values(err.response.data)[0] + '');
+          toast.error(Object.values(err.response.data)[0] + '', {
+            position: 'top-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
     } else {
-      console.log(errors);
-      alert('Please check your data');
+      toast.warn('please check your Data', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -190,161 +206,176 @@ function Register() {
   }, [errors, data]);
 
   return (
-    <section className='text-center text-lg-start'>
-      <div className='container py-3'>
-        <div className='row g-0 align-items-center'>
-          <div className='col-lg-6 mb-4 mb-lg-0'>
-            <div className='card cascading-right shadow-lg rounded'>
-              <div className='card-body p-5 text-center'>
-                <h2 className='fw-bold mb-2'>Sign Up</h2>
-                <form onSubmit={handleSubmit}>
-                  {/* user, first and last name */}
-                  <div className='row'>
-                    <div className='form-group mx-auto my-1 d-inline-block col'>
-                      <label htmlFor='firstName'>User Name</label>
-                      <input
-                        name='username'
-                        type='text'
-                        className={`form-control ${errors.usernameError ? 'border-danger' : ''}`}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                      {errors.usernameError && (
-                        <span className='text-danger form-text'>{errors.usernameError}</span>
-                      )}
+    <>
+      <ToastContainer
+        position='top-right'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <section className='text-center text-lg-start'>
+        <div className='container py-3'>
+          <div className='row g-0 align-items-center'>
+            <div className='col-lg-6 mb-4 mb-lg-0'>
+              <div className='card cascading-right shadow-lg rounded'>
+                <div className='card-body p-5 text-center'>
+                  <h2 className='fw-bold mb-2'>Sign Up</h2>
+                  <form onSubmit={handleSubmit}>
+                    {/* user, first and last name */}
+                    <div className='row'>
+                      <div className='form-group mx-auto my-1 d-inline-block col'>
+                        <label htmlFor='firstName'>User Name</label>
+                        <input
+                          name='username'
+                          type='text'
+                          className={`form-control ${errors.usernameError ? 'border-danger' : ''}`}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.usernameError && (
+                          <span className='text-danger form-text'>{errors.usernameError}</span>
+                        )}
+                      </div>
+                      <div className='form-group mx-auto my-1 d-inline-block col'>
+                        <label htmlFor='firstName'>First Name</label>
+                        <input
+                          name='firstName'
+                          type='text'
+                          className={`form-control ${errors.firstNameError ? 'border-danger' : ''}`}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.firstNameError && (
+                          <span className=' text-danger form-text'>{errors.firstNameError}</span>
+                        )}
+                      </div>
+                      <div className='form-group mx-auto my-1 d-inline-block col'>
+                        <label htmlFor='lastName'>Last Name</label>
+                        <input
+                          name='lastName'
+                          type='text'
+                          className={`form-control ${errors.lastNameError ? 'border-danger' : ''}`}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.lastNameError && (
+                          <span className=' text-danger form-text'>{errors.lastNameError}</span>
+                        )}
+                      </div>
                     </div>
-                    <div className='form-group mx-auto my-1 d-inline-block col'>
-                      <label htmlFor='firstName'>First Name</label>
-                      <input
-                        name='firstName'
-                        type='text'
-                        className={`form-control ${errors.firstNameError ? 'border-danger' : ''}`}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                      {errors.firstNameError && (
-                        <span className=' text-danger form-text'>{errors.firstNameError}</span>
-                      )}
+                    {/* email */}
+                    <div className='row my-1'>
+                      <div className='form-outline mx-auto w-100'>
+                        <label className='form-label' htmlFor='form3Example3'>
+                          Email address
+                        </label>
+                        <input
+                          name='email'
+                          type='text'
+                          className={`form-control ${errors.emailError ? 'border-danger' : ''}`}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.emailError && (
+                          <span className=' text-danger form-text'>{errors.emailError}</span>
+                        )}
+                      </div>
                     </div>
-                    <div className='form-group mx-auto my-1 d-inline-block col'>
-                      <label htmlFor='lastName'>Last Name</label>
-                      <input
-                        name='lastName'
-                        type='text'
-                        className={`form-control ${errors.lastNameError ? 'border-danger' : ''}`}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                      {errors.lastNameError && (
-                        <span className=' text-danger form-text'>{errors.lastNameError}</span>
-                      )}
-                    </div>
-                  </div>
-                  {/* email */}
-                  <div className='row my-1'>
-                    <div className='form-outline mx-auto w-100'>
-                      <label className='form-label' htmlFor='form3Example3'>
-                        Email address
-                      </label>
-                      <input
-                        name='email'
-                        type='text'
-                        className={`form-control ${errors.emailError ? 'border-danger' : ''}`}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                      {errors.emailError && (
-                        <span className=' text-danger form-text'>{errors.emailError}</span>
-                      )}
-                    </div>
-                  </div>
-                  {/* password and confirm password */}
-                  <div className='row mb-1'>
-                    <div className='form-group mx-auto my-1 d-inline-block col'>
-                      <label className='form-label' htmlFor='form3Example4'>
-                        Password
-                      </label>
-                      <input
-                        name='password'
-                        type='password'
-                        className={`form-control ${errors.passwordError ? 'border-danger' : ''}`}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                      {errors.passwordError && (
-                        <span className=' text-danger form-text'>{errors.passwordError}</span>
-                      )}
-                    </div>
+                    {/* password and confirm password */}
+                    <div className='row mb-1'>
+                      <div className='form-group mx-auto my-1 d-inline-block col'>
+                        <label className='form-label' htmlFor='form3Example4'>
+                          Password
+                        </label>
+                        <input
+                          name='password'
+                          type='password'
+                          className={`form-control ${errors.passwordError ? 'border-danger' : ''}`}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.passwordError && (
+                          <span className=' text-danger form-text'>{errors.passwordError}</span>
+                        )}
+                      </div>
 
-                    <div className='form-group mx-auto my-1 d-inline-block col'>
-                      <label className='form-label' htmlFor='confirmPassword'>
-                        Confirm Password
-                      </label>
-                      <input
-                        name='confirmPassword'
-                        type='password'
-                        className={`form-control ${
-                          errors.confirmPasswordError ? 'border-danger' : ''
-                        }`}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                      {errors.confirmPasswordError && (
-                        <span className=' text-danger form-text'>
-                          {errors.confirmPasswordError}
-                        </span>
-                      )}
+                      <div className='form-group mx-auto my-1 d-inline-block col'>
+                        <label className='form-label' htmlFor='confirmPassword'>
+                          Confirm Password
+                        </label>
+                        <input
+                          name='confirmPassword'
+                          type='password'
+                          className={`form-control ${
+                            errors.confirmPasswordError ? 'border-danger' : ''
+                          }`}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.confirmPasswordError && (
+                          <span className=' text-danger form-text'>
+                            {errors.confirmPasswordError}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  {/* phone number and image upload */}
-                  <div className='row mb-1'>
-                    <div className='form-group mx-auto my-1 d-inline-block col'>
-                      <label className='form-label' htmlFor='phoneNumber'>
-                        Phone Number
-                      </label>
-                      <input
-                        name='phoneNumber'
-                        type='text'
-                        className={`form-control ${errors.phoneNumberError ? 'border-danger' : ''}`}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                      {errors.phoneNumberError && (
-                        <span className='text-danger form-text'>{errors.phoneNumberError}</span>
-                      )}
+                    {/* phone number and image upload */}
+                    <div className='row mb-1'>
+                      <div className='form-group mx-auto my-1 d-inline-block col'>
+                        <label className='form-label' htmlFor='phoneNumber'>
+                          Phone Number
+                        </label>
+                        <input
+                          name='phoneNumber'
+                          type='text'
+                          className={`form-control ${
+                            errors.phoneNumberError ? 'border-danger' : ''
+                          }`}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.phoneNumberError && (
+                          <span className='text-danger form-text'>{errors.phoneNumberError}</span>
+                        )}
+                      </div>
+                      <div className='form-group mx-auto my-1 d-inline-block col'>
+                        <label className='form-label'>Profile Picture</label>
+                        <input
+                          accept='image/*'
+                          type='file'
+                          className='form-control'
+                          id='inputGroupFile02'
+                          onChange={handleImageChange}
+                          onBlur={handleBlur}
+                        />
+                        {errors.attachmentError && (
+                          <span className=' text-danger form-text'>{errors.attachmentError}</span>
+                        )}
+                      </div>
                     </div>
-                    <div className='form-group mx-auto my-1 d-inline-block col'>
-                      <label className='form-label'>Profile Picture</label>
-                      <input
-                        accept='image/*'
-                        type='file'
-                        className='form-control'
-                        id='inputGroupFile02'
-                        onChange={handleImageChange}
-                        onBlur={handleBlur}
-                      />
-                      {errors.attachmentError && (
-                        <span className=' text-danger form-text'>{errors.attachmentError}</span>
-                      )}
+                    {/* register and reset */}
+                    <div className='form-group'>
+                      <button type='submit' className='btn btn-dark mx-2'>
+                        Signup
+                      </button>
                     </div>
-                  </div>
-                  {/* register and reset */}
-                  <div className='form-group'>
-                    <button type='submit' className='btn btn-dark mx-2'>
-                      Signup
-                    </button>
-                  </div>
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className='col-lg-6 mb-5 mb-lg-0'>
-            <img src='bg.jpg' className='w-100 rounded-4 shadow-4' alt='' />
+            <div className='col-lg-6 mb-5 mb-lg-0'>
+              <img src='bg.jpg' className='w-100 rounded-4 shadow-4' alt='' />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

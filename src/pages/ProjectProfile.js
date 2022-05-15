@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { toast, ToastContainer } from 'react-toastify';
 
 import '../styles/projectProfile.css';
+import 'react-toastify/dist/ReactToastify.css';
 import DataContext from './../context/data';
 import ProjectCard from '../components/ProjectCard';
 import axiosInstance from '../network/axiosConfig';
@@ -60,9 +62,26 @@ export default function ProjectProfile() {
       )
       .then(res => {
         setRate('None');
+        toast.success('Rate added', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .catch(err => {
-        console.error(err);
+        toast.error(Object.values(err.response.data)[0] + '', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
 
@@ -72,11 +91,35 @@ export default function ProjectProfile() {
 
   const handleSubmitDonation = e => {
     if (donation < 1) {
-      alert('Making nullish or negative donation is prohibited');
+      toast.warn('Making nullish or negative donation is prohibited', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else if (donation + totalDonation > projectData.project.total_target) {
-      alert('sorry, project total target reached');
+      toast.warn('sorry, project total target reached', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else if (projectDate < new Date()) {
-      alert('sorry, you should not make a donation in a terminated project');
+      toast.warn('sorry, you should not make a donation in a terminated project', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       axiosInstance
         .post(
@@ -92,9 +135,26 @@ export default function ProjectProfile() {
         )
         .then(res => {
           console.log(res);
+          toast.success('Thank you for donating', {
+            position: 'top-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         })
         .catch(err => {
-          console.error(err);
+          toast.error(Object.values(err.response.data)[0] + '', {
+            position: 'top-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
     }
     setDonation('');
@@ -103,7 +163,6 @@ export default function ProjectProfile() {
   const handleReportChange = e => {
     setReport(e.target.value);
   };
-
   const handleSubmitReport = e => {
     axiosInstance
       .post(
@@ -119,12 +178,29 @@ export default function ProjectProfile() {
       )
       .then(res => {
         console.log(res);
+        toast.success('Project reported', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .then(() => {
         setReport('');
       })
       .catch(err => {
-        console.error(err);
+        toast.error(Object.values(err.response.data)[0] + '', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
 
@@ -134,7 +210,15 @@ export default function ProjectProfile() {
 
   const handleSubmitComment = e => {
     if (!comment) {
-      alert('Comment must not be empty');
+      toast.warn('Comment must not be empty', {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       axiosInstance
         .post(
@@ -150,9 +234,26 @@ export default function ProjectProfile() {
         )
         .then(res => {
           setComment('');
+          toast.success('Comment added', {
+            position: 'top-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         })
         .catch(err => {
-          console.error(err);
+          toast.error(Object.values(err.response.data)[0] + '', {
+            position: 'top-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
     }
   };
@@ -181,7 +282,15 @@ export default function ProjectProfile() {
         setIsLoading(false);
       })
       .catch(err => {
-        console.error(err);
+        toast.error(Object.values(err.response.data)[0] + '', {
+          position: 'top-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   }, [setProjectData, setProjectImg, projectId, rate, donation, report, comment]);
 
@@ -195,6 +304,17 @@ export default function ProjectProfile() {
         </div>
       ) : (
         <>
+          <ToastContainer
+            position='top-right'
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           {/* Rate modal */}
           <div
             className='modal fade'
@@ -381,6 +501,7 @@ export default function ProjectProfile() {
             </div>
           </div>
           {/* card */}
+
           <div className='projectCard' style={{ backgroundImage: `url(${projectImg})` }}>
             <div className='projectDetails'>
               <div className='projectHeader p-2'>
@@ -413,7 +534,9 @@ export default function ProjectProfile() {
                 <span className='project_info text-white'>
                   <b className='text-dark'>Tags: </b>
                   {projectData.project.tags.map(tag => (
-                    <span className='btn btn-info text-dark mx-1'>#{tag}</span>
+                    <span className='btn btn-info text-dark mx-1' key={tag.id}>
+                      #{tag}
+                    </span>
                   ))}
                 </span>
               </div>
@@ -425,7 +548,7 @@ export default function ProjectProfile() {
               </div>
               <div className='projectActions d-flex justify-content-evenly'>
                 <button
-                  className='btn btn-warning'
+                  className='btn btn-info text-white'
                   data-bs-toggle='modal'
                   data-bs-target='#exampleModal'>
                   Rate Project

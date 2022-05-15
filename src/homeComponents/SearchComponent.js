@@ -1,25 +1,49 @@
-// import { useState, useEffect } from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axiosInstance from '../network/axiosConfig';
-import { Link } from 'react-router-dom';
+
 import ProjectCard from '../components/ProjectCard';
+
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SearchComponent() {
   const [word, setWord] = useState('');
 
   const [projects, setProjects] = useState([]);
-  const search = () => {
-    axiosInstance
-      .get(`/projects/search/${word}`, { crossdomain: true })
-      .then(response => {
-        setProjects(response.data);
-        console.log(projects);
-      })
-      .catch(error => console.log(error));
-  };
+  useEffect(() => {
+    word
+      ? axiosInstance
+          .get(`/projects/search/${word}`, { crossdomain: true })
+          .then(response => {
+            setProjects(response.data);
+          })
+          .catch(err => {
+            toast.error(Object.values(err.response.data)[0] + '', {
+              position: 'top-right',
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          })
+      : setProjects([]);
+  }, [word]);
 
   return (
     <>
+      <ToastContainer
+        position='top-right'
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className='input-group m-5 w-25'>
         <input
           type='text'
@@ -29,20 +53,17 @@ function SearchComponent() {
           value={word}
           onChange={event => {
             setWord(event.target.value);
-            search();
           }}
         />
       </div>
-      <div>
-        <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-auto'>
-          {projects.map(project => {
-            return (
-              <div className='mb-2'>
-                <ProjectCard project={project} />
-              </div>
-            );
-          })}
-        </div>
+      <div className='row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4 m-auto z-index-1'>
+        {projects.map(project => {
+          return (
+            <div className='my-5'>
+              <ProjectCard project={project} />
+            </div>
+          );
+        })}
       </div>
     </>
   );

@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../network/axiosConfig";
 import Cookies from "js-cookie";
-import axios from "axios";
 
 function EditProfile() {
   const [isLoading, setIsLoading] = useState(true);

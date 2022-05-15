@@ -35,6 +35,10 @@ img{
 
 .font-macondo {
   font-family: 'Macondo', cursive;
-  color: black;
-  text-shadow: 2px 2px white;
+  /* color: black; */
+  /* text-shadow: 2px 2px white; */
+}
+
+.root {
+  /* background-color: lightgray; */
 }
