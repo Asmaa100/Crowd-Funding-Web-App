@@ -63,12 +63,11 @@ function EditProfile({ setEdited }) {
     if (data.username.length > 2 && data.username.length <= 20) {
       formData.append("username", data.username);
     }
-    if (data.first_name.length > 2 && data.first_name.length <= 20) {
+  
       formData.append("first_name", data.first_name);
-    }
-    if (data.last_name.length > 2 && data.last_name.length <= 20) {
+    
       formData.append("last_name", data.last_name);
-    }
+    
     formData.append("email", data.email);
     if (data.password !== undefined) {
       formData.append("password", data.password);
@@ -149,12 +148,12 @@ function EditProfile({ setEdited }) {
 
             first_name: Yup.string().min(
               3,
-              "Name must be at least 2 characters"
+              "Name must be at least 3 characters"
             ),
 
             last_name: Yup.string().min(
               3,
-              "Name must be at least 2 characters"
+              "Name must be at least 3 characters"
             ),
 
             password: Yup.string()
