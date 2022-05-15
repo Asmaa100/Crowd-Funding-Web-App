@@ -25,6 +25,7 @@ function EditProfile() {
   let csrftoken = Cookies.get('csrftoken');
   const phoneRegExp = /^01[0125]\d{8}$/;
   const passwordRegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/;
+  const usernameRegExp = /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){1,18}[a-zA-Z0-9]$/;
   const history = useNavigate();
   const initialFormData = {
     username: "",
@@ -61,16 +62,18 @@ function EditProfile() {
     formData.append("first_name", data.first_name);
     formData.append("last_name", data.last_name);
     formData.append("email", data.email);
-    formData.append("password", data.password);
-    formData.append("confirmPassword", data.confirmPassword);
+    if (data.password!==undefined){
+      formData.append("password", data.password);
+    }
+
     formData.append("mobile_phone", data.mobile_phone);
-    formData.append("profile_picture", data.profile_picture);
+
+    if (typeof(data.profile_picture)==='object'){
+      formData.append("profile_picture", data.profile_picture);
+    }
     formData.append("fb_profile", data.fb_profile);
     formData.append("birthday", data.birthday);
     formData.append("country", data.country);
-  
-    console.log("tafaa");
-    console.log(Cookies.get("jwt"));
     console.log(formData, "formData");
     axiosInstance.put("users/update",formData,{ withCredentials: true, headers: {
       'Content-Type': 'application/json',
@@ -80,7 +83,11 @@ function EditProfile() {
       history("/profile");
       console.log(Cookies.get("jwt"));
       
+    })
+    .catch(err => {
+      alert(Object.values(err.response.data)[0] + '');
     });
+    ;
     
   };
 
@@ -108,9 +115,15 @@ function EditProfile() {
             country: "",
           }}
           validationSchema={Yup.object().shape({
-            first_name: Yup.string(),
+            username: Yup.string()
+            .min(2, "userName is invalid")
+            .matches(usernameRegExp, "userName is invalid"),
 
-            last_name: Yup.string(),
+            first_name: Yup.string()
+            .min(2, "Name must be at least 2 characters"),
+
+            last_name: Yup.string()
+            .min(2, "Name must be at least 2 characters"),
 
             password: Yup.string()
               .min(8, "Password must be at least 8 characters")
@@ -434,3 +447,4 @@ function EditProfile() {
 }
 
 export default EditProfile;
+
