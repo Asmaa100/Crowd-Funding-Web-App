@@ -34,7 +34,7 @@ export default function Navbar() {
                   Projects
                 </Link>
 
-                <div className='dropdown my-auto' style={{ marginLeft: '70%' }}>
+                <div className='dropdown my-auto' style={{ marginLeft: '60%' }}>
                   <Link
                     to='#'
                     className='d-flex align-items-center text-white text-decoration-none dropdown-toggle'
@@ -42,10 +42,10 @@ export default function Navbar() {
                     data-bs-toggle='dropdown'
                     aria-expanded='false'>
                     <img
-                      src='https://github.com/mdo.png'
+                      src='https://gaeu.com/wp-content/uploads/2017/10/images_artiklar_Tillvaxt_liten.jpg'
                       alt=''
-                      width='40'
-                      height='40'
+                      width='80'
+                      height='80'
                       className='rounded-circle me-2'
                     />
                   </Link>
