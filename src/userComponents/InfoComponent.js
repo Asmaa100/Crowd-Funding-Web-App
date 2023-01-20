@@ -4,9 +4,8 @@ import Cookies from 'js-cookie';
 import { AiFillFlag } from 'react-icons/ai';
 import { BsFillCalendarDateFill } from 'react-icons/bs';
 import { AiTwotoneMail } from 'react-icons/ai';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
-import 'react-toastify/dist/ReactToastify.css';
 import axiosInstance from '../network/axiosConfig';
 
 export default function InfoComponent({ userData, userImg }) {
@@ -35,24 +34,13 @@ export default function InfoComponent({ userData, userImg }) {
 
   return (
     <>
-      <ToastContainer
-        position='top-right'
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className='col-md-12 offset-md-1 mt-5 shadow'>
         <div className='card card-view'>
           <div className='card-header text-white ' style={{ backgroundColor: '#354f6f' }}>
             <h1 className='text-center py-4 fw-bold'>
               {' '}
               <i className='fa-solid fa-hand-holding-heart nav-icon'></i>
-              <i className='fa-solid fa-gift nav-icon'>  </i>
+              <i className='fa-solid fa-gift nav-icon'> </i>
               {/* <i class="fa-solid fa-user"></i> */}{' '}
               {`${userData.first_name} ${userData.last_name}`}{' '}
               <i className='fa-solid fa-dove nav-icon'></i>{' '}

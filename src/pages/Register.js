@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import axiosInstance from '../network/axiosConfig';
-import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
   const phoneRegExp = /^01[0125]\d{8}$/;
@@ -207,17 +206,6 @@ function Register() {
 
   return (
     <>
-      <ToastContainer
-        position='top-right'
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <section className='text-center text-lg-start'>
         <div className='container py-3'>
           <div className='row g-0 align-items-center'>

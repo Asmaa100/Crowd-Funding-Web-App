@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../network/axiosConfig';
 import Cookies from 'js-cookie';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 function ProjectComments({ projectData }) {
   const [report, setReport] = useState('');
@@ -77,17 +76,6 @@ function ProjectComments({ projectData }) {
 
   return (
     <>
-      <ToastContainer
-        position='top-right'
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div
         className='modal fade'
         id='exampleModal4'

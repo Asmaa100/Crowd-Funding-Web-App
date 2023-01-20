@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import '../styles/projectProfile.css';
-import 'react-toastify/dist/ReactToastify.css';
+
 import DataContext from './../context/data';
 import ProjectCard from '../components/ProjectCard';
 import axiosInstance from '../network/axiosConfig';
@@ -304,17 +304,6 @@ export default function ProjectProfile() {
         </div>
       ) : (
         <>
-          <ToastContainer
-            position='top-right'
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
           {/* Rate modal */}
           <div
             className='modal fade'

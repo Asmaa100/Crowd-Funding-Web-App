@@ -3,8 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Cookies from 'js-cookie';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 import axiosInstance from '../network/axiosConfig';
 import DataContext from '../context/data';
@@ -77,17 +76,6 @@ function Login() {
 
   return (
     <>
-      <ToastContainer
-        position='top-right'
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <Formik
         initialValues={{
           email: '',

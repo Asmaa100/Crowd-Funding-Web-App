@@ -3,8 +3,8 @@ import axiosInstance from '../network/axiosConfig';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ProjectCard from '../components/ProjectCard';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 import './TopFiveProjects.css';
 
 function LatestFiveProjects() {
@@ -58,17 +58,6 @@ function LatestFiveProjects() {
         </div>
       ) : (
         <>
-          <ToastContainer
-            position='top-right'
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
           <div className='font-arial'>
             <h1>Latest-Five Project</h1>
           </div>

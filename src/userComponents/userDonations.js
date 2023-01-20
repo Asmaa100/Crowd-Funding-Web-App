@@ -2,8 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import DonationsComponent from './donationsComponent';
 import axiosInstance from '../network/axiosConfig';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 export default function Donations() {
   const [userDonations, setUserDonations] = useState([]);
@@ -28,17 +27,6 @@ export default function Donations() {
 
   return (
     <>
-      <ToastContainer
-        position='top-right'
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className='col-md-12 offset-md-1 '>
         <div className='row mt-5 text-center '>
           {userDonations.map(userDonation => {

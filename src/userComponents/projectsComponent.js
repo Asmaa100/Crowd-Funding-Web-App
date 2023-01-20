@@ -2,8 +2,7 @@ import React from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../network/axiosConfig';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 let projectId = 0;
 export default function ProjectsComponent({ userProject }) {
@@ -39,17 +38,6 @@ export default function ProjectsComponent({ userProject }) {
 
   return (
     <>
-      <ToastContainer
-        position='top-right'
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className='card shadow project'>
         <img
           alt=''

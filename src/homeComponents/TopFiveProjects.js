@@ -4,8 +4,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ProjectCard from '../components/ProjectCard';
 import './TopFiveProjects.css';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 function TopFiveProjects() {
   const [isLoading, setIsLoading] = useState(true);
@@ -58,17 +57,6 @@ function TopFiveProjects() {
         </div>
       ) : (
         <>
-          <ToastContainer
-            position='top-right'
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
           <div className='font-arial'>
             <h1>Top-Five Project</h1>
           </div>

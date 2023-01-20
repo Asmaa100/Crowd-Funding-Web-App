@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Cookies from 'js-cookie';
 
 import axiosInstance from '../network/axiosConfig';
-import 'react-toastify/dist/ReactToastify.css';
 
 function AddProjects() {
   let csrftoken = Cookies.get('csrftoken');
@@ -115,17 +114,6 @@ function AddProjects() {
 
   return (
     <>
-      <ToastContainer
-        position='top-right'
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <Formik
         initialValues={{
           title: '',

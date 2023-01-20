@@ -2,8 +2,7 @@ import React from 'react';
 import './style.css';
 import { useEffect, useState } from 'react';
 import axiosInstance from '../network/axiosConfig';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 export default function ProjectsComponent({ userDonation }) {
   const [projectDonation, setProjectDonation] = useState({});
@@ -47,17 +46,6 @@ export default function ProjectsComponent({ userDonation }) {
         </div>
       ) : (
         <>
-          <ToastContainer
-            position='top-right'
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
           <div className='card shadow donations text-light'>
             <div className='card-body'>
               <h5 className='card-title m-1'>

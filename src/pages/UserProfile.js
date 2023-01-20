@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import axiosInstance from '../network/axiosConfig';
 import InfoComponent from '../userComponents/InfoComponent';
@@ -9,7 +9,6 @@ import Donations from '../userComponents/userDonations';
 import EditProfile from '../userComponents/editComponent';
 
 import '../components/style.css';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function UserProfile() {
   const [userData, setUserData] = useState([]);
@@ -20,7 +19,6 @@ export default function UserProfile() {
   const [editIsActive, setEditIsActive] = useState(false);
   const [profileIsActive, setProfileIsActive] = useState(true);
   const [isEdited, setIsEdited] = useState(false);
-
 
   const imageUrl = 'http://localhost:8000/static/users/images/';
   useEffect(() => {
@@ -88,17 +86,6 @@ export default function UserProfile() {
         </div>
       ) : (
         <>
-          <ToastContainer
-            position='top-right'
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
           <div className='container g-0 row h-100'>
             <div
               className='col-4 d-flex flex-column p-3 text-white profile'

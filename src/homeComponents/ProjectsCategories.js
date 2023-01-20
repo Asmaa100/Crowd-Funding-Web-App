@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../network/axiosConfig';
 import 'react-multi-carousel/lib/styles.css';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 import './TopFiveProjects.css';
 import { Link } from 'react-router-dom';
 
@@ -39,17 +39,6 @@ function ProjectsCategories() {
         </div>
       ) : (
         <>
-          <ToastContainer
-            position='top-right'
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
           <div className='mx-auto'>
             <h1 className='font-arial'>Categories</h1>
             <table className='table'>

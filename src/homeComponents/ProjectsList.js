@@ -5,8 +5,7 @@ import { useParams } from 'react-router-dom';
 import ProjectCard from '../components/ProjectCard';
 import axiosInstance from '../network/axiosConfig';
 
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 export default function ProjectsList() {
   const [projects, setProjects] = useState([]);
@@ -32,17 +31,6 @@ export default function ProjectsList() {
 
   return (
     <>
-      <ToastContainer
-        position='top-right'
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className='row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 m-auto'>
         {projects.map(project => {
           return (
